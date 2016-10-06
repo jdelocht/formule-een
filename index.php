@@ -30,31 +30,35 @@ foreach ($teams as $team) {
      echo $team->getTeamName() . ' ' . $team->getTeamEngine() . ' ' . $team->getChassisName() . '<br>';
 }
 
-$grandPrix = [
-    new GrandPrix ('20 March', 'Formula 1 Rolex Australian Grand Prix', 'Nico Rosberg', new GrandPrixInfo('Melbourne', 'Australia', 5303, 307574, 58, new RaceLapRecord('Michael Schumacher', 124125), new SessionInfo('FP1', 'Friday', '12:30', '14:00'))),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-    new GrandPrix (),
-];
-echo 'hoi';
+//$grandPrix = [
+//    new GrandPrix ('20 March', 'Formula 1 Rolex Australian Grand Prix', 'Nico Rosberg', new GrandPrixInfo('Melbourne', 'Australia', 5303, 307574, 58, new RaceLapRecord('Michael Schumacher', 124125), new SessionInfo('FP1', 'Friday', '12:30', '14:00'))),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//    new GrandPrix (),
+//];
+echo 'hoi' . '<br>';
+
+for($i=1; $i <= 22; $i++) {
+    echo $i . ' ' . 'driver here' . '<br>';
+}
 
 
 
