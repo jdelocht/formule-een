@@ -29,19 +29,23 @@ class RaceResultApi
     /**
      * @param $position
      * @param RaceResult $raceResult
+     * @return string
      */
-    public function displayRaceResultsForTheFirstDriverInArray($position, $raceResult)
+    public function getRaceResultsForTheFirstDriverInArray($position, $raceResult)
     {
-        echo $position + 1 . '. ' . $raceResult->getDriver() . ' ' . $raceResult->getTeam() . ' ' . $raceResult->getNumberOfLaps() . ' ' . $raceResult->getTimeOrRetired() . ' ' . $raceResult->getChampionshipPoints() . '<BR>';
+        return $position + 1 . '. ' . $raceResult->getDriver() . ' ' . $raceResult->getTeam() . ' ' . $raceResult->getNumberOfLaps() . ' ' . $raceResult->getTimeOrRetired() . ' ' . $raceResult->getChampionshipPoints();
     }
 
     /**
      * @param $suzukaRaceResult
+     * @return array
      */
-    public function displayRaceResults($suzukaRaceResult)
+    public function getRaceResults($suzukaRaceResult)
     {
+        $raceResults = [];
         foreach ($suzukaRaceResult as $position => $raceResult) {
-            $this->displayRaceResultsForTheFirstDriverInArray($position, $raceResult);
+            $raceResults[] = $this->getRaceResultsForTheFirstDriverInArray($position, $raceResult);
         }
+        return $raceResults;
     }
 }

@@ -37,6 +37,7 @@ $displayFreePracticeOneResults = FormulaOneApiFactory::getSessionResultApi()->ge
 $displayFreePracticeTwoResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeTwoResults($suzukaFP1SessionResults);
 $displayFreePracticeThreeResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeThreeResults($suzukaFP1SessionResults);
 $displayQualifyingResults = FormulaOneApiFactory::getQualifyingApi()->getQualifyingResults($suzukaQualifyingResult);
+$displayRaceResults = FormulaOneApiFactory::getRaceResultApi()->getRaceResults($suzukaRaceResult);
 
 
 
@@ -62,7 +63,9 @@ foreach ($displayQualifyingResults as $resultLine) {
 }
 echo '<BR>';
 echo 'Race Results:' . '<BR>';
-echo FormulaOneApiFactory::getRaceResultApi()->displayRaceResults($suzukaRaceResult);
+foreach ($displayRaceResults as $resultLine) {
+    echo $resultLine . '<BR>';
+}
 
 
 
