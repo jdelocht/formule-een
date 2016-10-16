@@ -7,7 +7,6 @@ require_once __DIR__ . '/domain/team/TeamInfo.php';
 require_once __DIR__ . '/domain/team/TeamHistory.php';
 require_once __DIR__ . '/domain/session_result/fp_session_result/SessionResult.php';
 require_once __DIR__ . '/domain/session_result/qualifying_result/QualifyingResult.php';
-require_once __DIR__ . '/domain/laptimedefiner/LapTimeDefiner.php';
 require_once __DIR__ . '/domain/session_result/race_result/RaceResult.php';
 require_once __DIR__ . '/infrastructure/FormulaOneApiFactory.php';
 require_once __DIR__ . '/application/DriverApi.php';
@@ -36,79 +35,92 @@ $suzukaRaceResult = FormulaOneApiFactory::getRaceResultApi()->getResultsForSuzuk
 
 echo '2016 FORMULA 1 EMIRATES JAPANESE GRAND PRIX' . '<BR>' . 'Suzuka' . '<BR><BR>';
 echo  'Free Practice One:' . '<BR>';
-
-/** @var SessionResult $sessionResult */
-foreach ($suzukaFP1SessionResults as $position => $sessionResult) {
-    $time = $sessionResult->getLapTime();
-    $minutes = substr($time, 0, 1);
-    $seconds = substr($time, 1, 2);
-    $milliseconds = substr($time, 3, 3);
-    $lapTime =  $minutes . ':' . $seconds . '.' . $milliseconds;
-
-    echo  $position+1 . '.' . ' ' . ' ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $sessionResult->getNumberOfLaps() . '<br>';
-}
-
+FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeOneResults($suzukaFP1SessionResults);
 echo '<BR>';
 echo 'Free Practice Two:' . '<BR>';
-
-/** @var SessionResult $SessionResults */
-foreach ($suzukaFP2SessionResults as $position => $sessionResult) {
-    $time = $sessionResult->getLapTime();
-    $minutes = substr($time, 0, 1);
-    $seconds = substr($time, 1, 2);
-    $milliseconds = substr($time, 3, 3);
-    $lapTime =  $minutes . ':' . $seconds . '.' . $milliseconds;
-
-    echo  $position+1 . '.' . ' ' . ' ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $sessionResult->getNumberOfLaps() . '<br>';
-}
-
+FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeTwoResults($suzukaFP1SessionResults);
 echo '<BR>';
 echo 'Free Practice Three:' . '<BR>';
-/** @var SessionResult $SessionResults */
-foreach ($suzukaFP3SessionResults as $position => $sessionResult) {
-    $time = $sessionResult->getLapTime();
-    $minutes = substr($time, 0, 1);
-    $seconds = substr($time, 1, 2);
-    $milliseconds = substr($time, 3, 3);
-    $lapTime = $minutes . ':' . $seconds . '.' . $milliseconds;
-
-    echo $position + 1 . '.' . ' ' . ' ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $sessionResult->getNumberOfLaps() . '<br>';
-}
-
+FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeThreeResults($suzukaFP1SessionResults);
 echo '<BR>';
 echo 'Qualifying Results:' . '<BR>';
-
-/** @var QualifyingResult $qualifyingResult */
-foreach ($suzukaQualifyingResult as $position => $qualifyingResult) {
-    $timeQ1 = $qualifyingResult->getQualifyingOneTime();
-    $timeQ2 = $qualifyingResult->getQualifyingTwoTime();
-    $timeQ3 = $qualifyingResult->getQualifyingThreeTime();
-
-    $minutesQ1 = substr($timeQ1, 0, 1);
-    $secondsQ1 = substr($timeQ1, 1, 2);
-    $millisecondsQ1 = substr($timeQ1, 3, 3);
-    $lapTimeQ1 = $minutesQ1 . ':' . $secondsQ1 . '.' . $millisecondsQ1;
-
-    $minutesQ2 = substr($timeQ2, 0, 1);
-    $secondsQ2 = substr($timeQ2, 1, 2);
-    $millisecondsQ2 = substr($timeQ2, 3, 3);
-    $laptTimeQ2 = $minutesQ2 . ':' . $secondsQ2 . '.' . $millisecondsQ2;
-
-    $minutesQ3 = substr($timeQ3, 0, 1);
-    $secondsQ3 = substr($timeQ3, 1, 2);
-    $millisecondsQ3 = substr($timeQ3, 3, 3);
-    $lapTimeQ3 = $minutesQ3 . ':' . $secondsQ3 . '.' . $millisecondsQ3;
-
-    echo $position + 1 . '.' . ' ' . ' ' . $qualifyingResult->getDriver() . ' '. $qualifyingResult->getTeam() . ' ' . $lapTimeQ1 . ' ' . $laptTimeQ2 . ' ' . $lapTimeQ3 . ' ' . ' ' . $qualifyingResult->getNumberOfLaps() . '<br>';
-}
-
+FormulaOneApiFactory::getQualifyingApi()->displayQualifyingResults($suzukaQualifyingResult);
 echo '<BR>';
 echo 'Race Results:' . '<BR>';
+FormulaOneApiFactory::getRaceResultApi()->displayRaceResults($suzukaRaceResult);
 
-/** @var RaceResult $raceResult */
-foreach ($suzukaRaceResult as $position => $raceResult) {
-    echo $position + 1 . '.' . ' ' . ' ' . $raceResult->getDriver() . ' ' . $raceResult->getTeam() . ' ' . $raceResult->getNumberOfLaps() . ' ' . $raceResult->getTimeOrRetired() . ' ' . $raceResult->getChampionshipPoints() . '<BR>';
+
+
+
+
+//Optie 1: onderstaande berekening zou kunnen werken, ook met de convertlaptimer. Het enige probleem is dat, wanneer de verschillen 10+ in sec worden, wat rare is maar wel met Sainz in Japan gebeurde, er een error komt. Wat zijn alternatieven?
+//Ook is het zo dat dit een berekening is, maar ik nog niet weet hoe ik van hieruit alle arraywaarden vergelijk met de sessiewinnaar.
+//misschien: http://stackoverflow.com/questions/8662539/php-compare-values-in-a-single-array-and-output-the-difference?
+
+
+$time = 134128;
+$time2 = 154713;
+
+
+
+/**
+ * @param $time2
+ * @return float
+ */
+function convertTimeTwoForLapTimeDifferenceFreePractice($time2)
+{
+    $mins2 = floor($time2 / 100000);
+    $sec2 = floor($time2 / 1000) % 100;
+
+    $secondsForDifference2 = $mins2 * 60 + $sec2;
+    return $secondsForDifference2;
 }
+
+/**
+ * @param $time
+ * @return float
+ */
+function convertTimeOneForLapTimeDifferenceFreePractice($time)
+{
+    $mins = floor($time / 100000);
+    $sec = floor($time / 1000) % 100;
+
+    return $mins * 60 + $sec;
+}
+
+/**
+ * @param $time
+ * @param $time2
+ * @return array
+ */
+function calculateDifferenceInLapTimeForFreePractice($time, $time2)
+{
+    $secondsForDifference1 = convertTimeOneForLapTimeDifferenceFreePractice($time);
+    $secondsForDifference2 = convertTimeTwoForLapTimeDifferenceFreePractice($time2);
+
+    $millisecs = floor($time % 1000);
+    $millisecs2 = floor($time2 % 1000);
+
+    $differenceSeconds = $secondsForDifference2 - $secondsForDifference1;
+    $differenceMilliseconds = $millisecs2 - $millisecs;
+    return array($differenceSeconds, $differenceMilliseconds);
+}
+
+/**
+ * @param $time
+ * @param $time2
+ */
+function displayLapTimeDifferenceForFreePractice($time, $time2)
+{
+    list($differenceSeconds, $differenceMilliseconds) = calculateDifferenceInLapTimeForFreePractice($time, $time2);
+
+    echo '+' . $differenceSeconds . '.' . $differenceMilliseconds;
+}
+displayLapTimeDifferenceForFreePractice($time, $time2);
+
+
+
+
 //    /** @var Driver $driver */
 //foreach ($drivers as $driver) {
 //    echo $driver->getDriverRaceNumber() . ' ' . $driver->getDriverName() . ' ' . $driver->getDriverNationality() . ' ' . $driver->getDriverTeam() . '<br>';

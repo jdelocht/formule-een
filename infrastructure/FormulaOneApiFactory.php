@@ -14,7 +14,9 @@ class FormulaOneApiFactory
 
     public static function getSessionResultApi()
     {
-        return new SessionResultApi (new DummySessionRepository);
+        return new SessionResultApi (
+            new DummySessionRepository
+        );
     }
 
     public static function getQualifyingApi()
@@ -26,4 +28,6 @@ class FormulaOneApiFactory
     {
         return new RaceResultApi (new DummyRaceRepository);
     }
+
+
 }

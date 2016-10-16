@@ -24,4 +24,24 @@ class RaceResultApi
     {
         return $this->raceRepository->getResultsForRace('Suzuka');
     }
+
+    /** @var RaceResult $raceResult */
+    /**
+     * @param $position
+     * @param RaceResult $raceResult
+     */
+    public function displayRaceResultsForTheFirstDriverInArray($position, $raceResult)
+    {
+        echo $position + 1 . '. ' . $raceResult->getDriver() . ' ' . $raceResult->getTeam() . ' ' . $raceResult->getNumberOfLaps() . ' ' . $raceResult->getTimeOrRetired() . ' ' . $raceResult->getChampionshipPoints() . '<BR>';
+    }
+
+    /**
+     * @param $suzukaRaceResult
+     */
+    public function displayRaceResults($suzukaRaceResult)
+    {
+        foreach ($suzukaRaceResult as $position => $raceResult) {
+            $this->displayRaceResultsForTheFirstDriverInArray($position, $raceResult);
+        }
+    }
 }
