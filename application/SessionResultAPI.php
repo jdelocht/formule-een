@@ -74,22 +74,28 @@ class SessionResultApi
 
     /**
      * @param $suzukaFP2SessionResults
+     * @return array
      */
-    public function displayFreePracticeTwoResults($suzukaFP2SessionResults)
+    public function getFreePracticeTwoResults($suzukaFP2SessionResults)
     {
+        $freePracticeTwoResults = [];
         foreach ($suzukaFP2SessionResults as $position => $sessionResult) {
-            $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
+            $freePracticeTwoResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
         }
+        return $freePracticeTwoResults;
     }
 
     /**
      * @param $suzukaFP3SessionResults
+     * @return array
      */
-    public function displayFreePracticeThreeResults($suzukaFP3SessionResults)
+    public function getFreePracticeThreeResults($suzukaFP3SessionResults)
     {
+        $freePracticeThreeResults = [];
         foreach ($suzukaFP3SessionResults as $position => $sessionResult) {
-            $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
+            $freePracticeThreeResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
         }
+        return $freePracticeThreeResults;
     }
 }
 
