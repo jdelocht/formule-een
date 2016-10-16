@@ -75,7 +75,7 @@ class QualifyingApi
      * @param $position
      * @return string
      */
-    public function displayQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position)
+    public function getQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position)
     {
         $lapTimeQ1 = $this->convertLapTimeForQualifyingOne($qualifyingResult->getQualifyingOneTime());
         $lapTimeQ2 = $this->convertLapTimeForQualifyingTwo($qualifyingResult->getQualifyingTwoTime());
@@ -88,12 +88,12 @@ class QualifyingApi
      * @param $suzukaQualifyingResult
      * @return array
      */
-    public function displayQualifyingResults($suzukaQualifyingResult)
+    public function getQualifyingResults($suzukaQualifyingResult)
     {
         $qualifyingResults = [];
         foreach ($suzukaQualifyingResult as $position => $qualifyingResult) {
 
-            $qualifyingResults[] = $this->displayQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position);
+            $qualifyingResults[] = $this->getQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position);
         }
         return $qualifyingResults;
     }
