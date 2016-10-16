@@ -33,21 +33,28 @@ $suzukaFP3SessionResults = FormulaOneApiFactory::getSessionResultApi()->getResul
 $suzukaQualifyingResult = FormulaOneApiFactory::getQualifyingApi()->getResultsForSuzukaQualifying();
 $suzukaRaceResult = FormulaOneApiFactory::getRaceResultApi()->getResultsForSuzukaRace();
 
+$displayFreePracticeOneResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeOneResults($suzukaFP1SessionResults);
+
+
+
+
 echo '2016 FORMULA 1 EMIRATES JAPANESE GRAND PRIX' . '<BR>' . 'Suzuka' . '<BR><BR>';
 echo  'Free Practice One:' . '<BR>';
-FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeOneResults($suzukaFP1SessionResults);
+foreach ($displayFreePracticeOneResults as $resultLine) {
+    echo $resultLine . '<BR>';
+}
 echo '<BR>';
 echo 'Free Practice Two:' . '<BR>';
-FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeTwoResults($suzukaFP1SessionResults);
+echo FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeTwoResults($suzukaFP1SessionResults);
 echo '<BR>';
 echo 'Free Practice Three:' . '<BR>';
-FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeThreeResults($suzukaFP1SessionResults);
+echo FormulaOneApiFactory::getSessionResultApi()->displayFreePracticeThreeResults($suzukaFP1SessionResults);
 echo '<BR>';
 echo 'Qualifying Results:' . '<BR>';
-FormulaOneApiFactory::getQualifyingApi()->displayQualifyingResults($suzukaQualifyingResult);
+echo FormulaOneApiFactory::getQualifyingApi()->displayQualifyingResults($suzukaQualifyingResult);
 echo '<BR>';
 echo 'Race Results:' . '<BR>';
-FormulaOneApiFactory::getRaceResultApi()->displayRaceResults($suzukaRaceResult);
+echo FormulaOneApiFactory::getRaceResultApi()->displayRaceResults($suzukaRaceResult);
 
 
 

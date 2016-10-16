@@ -47,25 +47,29 @@ class SessionResultApi
         return $minutes . ':' . $seconds . '.' . $milliseconds;
     }
 
-     /**
+    /**
      * @param SessionResult $sessionResult
      * @param $position
+     * @return string
      */
-    public function displayFreePracticeResultForTheFirstDriverInArray($sessionResult, $position)
+    public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position)
     {
         $lapTime = $this->convertLapTimeForFreePractice($sessionResult->getLapTime());
 
-        echo $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $sessionResult->getNumberOfLaps() . '<br>';
+        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $sessionResult->getNumberOfLaps();
     }
 
     /**
      * @param $suzukaFP1SessionResults
+     * @return array
      */
-    public function displayFreePracticeOneResults($suzukaFP1SessionResults)
+    public function getFreePracticeOneResults($suzukaFP1SessionResults)
     {
+        $freePracticeOneResults = [];
         foreach ($suzukaFP1SessionResults as $position => $sessionResult) {
-            $this->displayFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
+            $freePracticeOneResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
         }
+        return $freePracticeOneResults;
     }
 
     /**
@@ -74,7 +78,7 @@ class SessionResultApi
     public function displayFreePracticeTwoResults($suzukaFP2SessionResults)
     {
         foreach ($suzukaFP2SessionResults as $position => $sessionResult) {
-            $this->displayFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
+            $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
         }
     }
 
@@ -84,7 +88,7 @@ class SessionResultApi
     public function displayFreePracticeThreeResults($suzukaFP3SessionResults)
     {
         foreach ($suzukaFP3SessionResults as $position => $sessionResult) {
-            $this->displayFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
+            $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
         }
     }
 }
