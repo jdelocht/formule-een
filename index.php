@@ -36,6 +36,7 @@ $suzukaRaceResult = FormulaOneApiFactory::getRaceResultApi()->getResultsForSuzuk
 $displayFreePracticeOneResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeOneResults($suzukaFP1SessionResults);
 $displayFreePracticeTwoResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeTwoResults($suzukaFP1SessionResults);
 $displayFreePracticeThreeResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeThreeResults($suzukaFP1SessionResults);
+$displayQualifyingResults = FormulaOneApiFactory::getQualifyingApi()->displayQualifyingResults($suzukaQualifyingResult);
 
 
 
@@ -56,7 +57,9 @@ foreach ($displayFreePracticeThreeResults as $resultLine) {
 }
 echo '<BR>';
 echo 'Qualifying Results:' . '<BR>';
-echo FormulaOneApiFactory::getQualifyingApi()->displayQualifyingResults($suzukaQualifyingResult);
+foreach ($displayQualifyingResults as $resultLine) {
+    echo $resultLine . '<BR>';
+}
 echo '<BR>';
 echo 'Race Results:' . '<BR>';
 echo FormulaOneApiFactory::getRaceResultApi()->displayRaceResults($suzukaRaceResult);

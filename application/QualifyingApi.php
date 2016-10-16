@@ -81,18 +81,21 @@ class QualifyingApi
         $lapTimeQ2 = $this->convertLapTimeForQualifyingTwo($qualifyingResult->getQualifyingTwoTime());
         $lapTimeQ3 = $this->convertLapTimeForQualifyingThree($qualifyingResult->getQualifyingThreeTime());
 
-        echo $position + 1 . '. ' . $qualifyingResult->getDriver() . ' ' . $qualifyingResult->getTeam() . ' ' . $lapTimeQ1 . ' ' . $lapTimeQ2 . ' ' . $lapTimeQ3 . ' ' . ' ' . $qualifyingResult->getNumberOfLaps() . '<br>';
+        return $position + 1 . '. ' . $qualifyingResult->getDriver() . ' ' . $qualifyingResult->getTeam() . ' ' . $lapTimeQ1 . ' ' . $lapTimeQ2 . ' ' . $lapTimeQ3 . ' ' . ' ' . $qualifyingResult->getNumberOfLaps();
     }
 
     /**
      * @param $suzukaQualifyingResult
+     * @return array
      */
     public function displayQualifyingResults($suzukaQualifyingResult)
     {
+        $qualifyingResults = [];
         foreach ($suzukaQualifyingResult as $position => $qualifyingResult) {
 
-            $this->displayQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position);
+            $qualifyingResults[] = $this->displayQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position);
         }
+        return $qualifyingResults;
     }
 }
 
