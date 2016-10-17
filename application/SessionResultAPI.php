@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @since 1.0
- * @author Echodes / Joost de Locht
- */
 class SessionResultApi
 {
     /**
@@ -14,16 +10,22 @@ class SessionResultApi
      * @var LapTimeConverter
      */
     private $lapTimeConverter;
+    /**
+     * @var LapTimeCalculator
+     */
+    private $lapTimeCalculator;
 
     /**
      * SessionResultApi constructor.
      * @param SessionRepository $sessionRepository
      * @param LapTimeConverter $lapTimeConverter
+     * @param LapTimeCalculator $lapTimeCalculator
      */
-    public function __construct(SessionRepository $sessionRepository, LapTimeConverter $lapTimeConverter)
+    public function __construct(SessionRepository $sessionRepository, LapTimeConverter $lapTimeConverter, LapTimeCalculator $lapTimeCalculator)
     {
         $this->sessionRepository = $sessionRepository;
         $this->lapTimeConverter = $lapTimeConverter;
+        $this->lapTimeCalculator = $lapTimeCalculator;
     }
 
     /**
@@ -39,7 +41,7 @@ class SessionResultApi
 
         $lapTimeDifferenceBetween = '';
         if ($showDifference) {
-            $lapTimeDifferenceBetween = getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
+            $lapTimeDifferenceBetween = $this->lapTimeCalculator->getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
         }
 
         return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' .  $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();

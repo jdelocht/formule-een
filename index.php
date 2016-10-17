@@ -9,6 +9,7 @@ require_once __DIR__ . '/domain/session_result/fp_session_result/SessionResult.p
 require_once __DIR__ . '/domain/session_result/qualifying_result/QualifyingResult.php';
 require_once __DIR__ . '/domain/session_result/race_result/RaceResult.php';
 require_once __DIR__ . '/domain/functions/LapTimeConverter.php';
+require_once __DIR__ . '/domain/functions/LapTimeCalculator.php';
 require_once __DIR__ . '/infrastructure/FormulaOneApiFactory.php';
 require_once __DIR__ . '/application/DriverApi.php';
 require_once __DIR__ . '/application/DriverRepository.php';
@@ -25,7 +26,6 @@ require_once __DIR__ . '/application/DummyQualifyingRepository.php';
 require_once __DIR__ . '/application/RaceResultApi.php';
 require_once __DIR__ . '/application/RaceRepository.php';
 require_once __DIR__ . '/application/DummyRaceRepository.php';
-require_once __DIR__ . '/application/functions/lapTimeCalculator.php';
 
 
 $drivers = FormulaOneApiFactory::getDriverApi()->getDriverListForSeason2017();
@@ -69,7 +69,6 @@ echo 'Race Results:' . '<BR>';
 foreach ($displayRaceResults as $resultLine) {
     echo $resultLine . '<BR>';
 }
-
 
 //$lapTime = 134128;
 //$slowerLapTime = 154713;

@@ -16,7 +16,8 @@ class FormulaOneApiFactory
     {
         return new SessionResultApi (
             new DummySessionRepository,
-            new LapTimeConverter()
+            new LapTimeConverter(),
+            new LapTimeCalculator()
         );
     }
 
