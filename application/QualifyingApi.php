@@ -29,9 +29,9 @@ class QualifyingApi
      */
     public function getQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position)
     {
-        $lapTimeQ1 = $this->lapTimeConverter->getLapTimeForFreePracticeConverterAlternative($qualifyingResult->getQualifyingOneTime());
-        $lapTimeQ2 = $this->lapTimeConverter->getLapTimeForFreePracticeConverterAlternative($qualifyingResult->getQualifyingTwoTime());
-        $lapTimeQ3 = $this->lapTimeConverter->getLapTimeForFreePracticeConverterAlternative($qualifyingResult->getQualifyingThreeTime());
+        $lapTimeQ1 = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingOneTime());
+        $lapTimeQ2 = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingTwoTime());
+        $lapTimeQ3 = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingThreeTime());
 
         return $position + 1 . '. ' . $qualifyingResult->getDriver() . ' ' . $qualifyingResult->getTeam() . ' ' . $lapTimeQ1 . ' ' . $lapTimeQ2 . ' ' . $lapTimeQ3  . ' ' . $qualifyingResult->getNumberOfLaps();
     }

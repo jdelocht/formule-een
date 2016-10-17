@@ -11,9 +11,17 @@ class LapTimeCalculator
      * @param $slowerLapTime
      * @return mixed
      */
-    public function getLapTimeDifferenceInMilliSecondsBetweenAlternative($lapTime, $slowerLapTime)
+    public function getLapTimeDifferenceInMilliSecondsBetween($lapTime, $slowerLapTime)
     {
-        return $slowerLapTime - $lapTime ;
+        $difference = floor(($slowerLapTime - $lapTime) * 1000);
+        $differenceSeconds = floor($difference / 1000);
+        $differenceMilliSeconds = floor($difference % 1000);
+
+        if ($differenceMilliSeconds < 10) {
+            return $differenceSeconds . '.' . '00' . $differenceMilliSeconds;}
+        if ($differenceMilliSeconds < 100) {
+            return $differenceSeconds . '.' . '0' . $differenceMilliSeconds;}
+        return $differenceSeconds . '.' . $differenceMilliSeconds;
     }
 
     /**
@@ -21,10 +29,11 @@ class LapTimeCalculator
      * @param $slowerLapTime
      * @return string
      */
-    public function getLapTimeDifferenceBetweenAlternative($lapTime, $slowerLapTime)
+    public function getLapTimeDifferenceBetween($lapTime, $slowerLapTime)
     {
-        $differenceBetweenLapTimes = $this->getLapTimeDifferenceInMilliSecondsBetweenAlternative($lapTime, $slowerLapTime);
+        $differenceBetweenLapTimes = $this->getLapTimeDifferenceInMilliSecondsBetween($lapTime, $slowerLapTime);
 
         return '+' . $differenceBetweenLapTimes;
     }
 }
+

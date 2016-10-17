@@ -37,11 +37,11 @@ class SessionResultApi
      */
     public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fastestLapTime = 0)
     {
-        $lapTime = $this->lapTimeConverter->getLapTimeForFreePracticeConverterAlternative($sessionResult->getLapTime());
+        $lapTime = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($sessionResult->getLapTime());
 
         $lapTimeDifferenceBetween = '';
         if ($showDifference) {
-            $lapTimeDifferenceBetween = $this ->lapTimeCalculator->getLapTimeDifferenceBetweenAlternative($fastestLapTime, $sessionResult->getLapTime()) . ' ';
+            $lapTimeDifferenceBetween = $this ->lapTimeCalculator->getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
         }
 
         return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' .  $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();

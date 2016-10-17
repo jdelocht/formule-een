@@ -6,7 +6,7 @@ class LapTimeConverter
      * @param $lapTime
      * @return string
      */
-    public function getLapTimeForFreePracticeConverterAlternative($lapTime)
+    public function getLapTimeForFreePracticeConverter($lapTime)
     {
         $explodedLapTime = explode('.', $lapTime);
 
