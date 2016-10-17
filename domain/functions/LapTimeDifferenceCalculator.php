@@ -8,37 +8,12 @@ class LapTimeCalculator
 {
     /**
      * @param $lapTime
-     * @return float
-     */
-    function convertTimeOneForLapTimeDifferenceFreePractice($lapTime)
-    {
-        $minutes = floor($lapTime / 100000);
-        $seconds = floor($lapTime / 1000) % 100;
-
-        return $minutes * 60 + $seconds;
-    }
-
-    /**
-     * @param $lapTime
      * @param $slowerLapTime
-     * @return float
+     * @return mixed
      */
-    function getLapTimeDifferenceInSecondsBetween($lapTime, $slowerLapTime)
+    public function getLapTimeDifferenceInMilliSecondsBetweenAlternative($lapTime, $slowerLapTime)
     {
-        $convertTimeOneForLapTimeDifferenceFreePractice = $this->convertTimeOneForLapTimeDifferenceFreePractice($lapTime);
-        $convertTimeOneForLapTimeDifferenceFreePractice1 = $this->convertTimeOneForLapTimeDifferenceFreePractice($slowerLapTime);
-
-        return $convertTimeOneForLapTimeDifferenceFreePractice1 - $convertTimeOneForLapTimeDifferenceFreePractice;
-    }
-
-    /**
-     * @param $lapTime
-     * @param $slowerLapTime
-     * @return float
-     */
-    function getLapTimeDifferenceInMilliSecondsBetween($lapTime, $slowerLapTime)
-    {
-        return floor($slowerLapTime % 1000) - floor($lapTime % 1000);
+        return $slowerLapTime - $lapTime ;
     }
 
     /**
@@ -46,11 +21,10 @@ class LapTimeCalculator
      * @param $slowerLapTime
      * @return string
      */
-    function getLapTimeDifferenceBetween($lapTime, $slowerLapTime)
+    public function getLapTimeDifferenceBetweenAlternative($lapTime, $slowerLapTime)
     {
-        $differenceSeconds = $this->getLapTimeDifferenceInSecondsBetween($lapTime, $slowerLapTime);
-        $differenceMilliseconds = $this->getLapTimeDifferenceInMilliSecondsBetween($lapTime, $slowerLapTime);
+        $differenceBetweenLapTimes = $this->getLapTimeDifferenceInMilliSecondsBetweenAlternative($lapTime, $slowerLapTime);
 
-        return '+' . $differenceSeconds . '.' . $differenceMilliseconds;
+        return '+' . $differenceBetweenLapTimes;
     }
 }

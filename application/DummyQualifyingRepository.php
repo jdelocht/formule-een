@@ -32,7 +32,7 @@ class DummyQualifyingRepository implements QualifyingRepository
     public function getSuzukaQualifyingResult()
     {
         return [
-            new QualifyingResult('Nico Rosberg', 'Mercedes', 131858, 130714, 130647, 13),
+            new QualifyingResult('Nico Rosberg', 'Mercedes', 91.858, 130714, 130647, 13),
             new QualifyingResult('Lewis Hamilton', 'Mercedes', 132218, 131129, 130660, 13),
             new QualifyingResult('Kimi Räikkönen', 'Ferrari', 131674, 131406, 130949, 12),
             new QualifyingResult('Sebastian Vettel', 'Ferrari', 131659, 131227, 131028, 12),

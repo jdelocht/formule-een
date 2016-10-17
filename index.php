@@ -40,6 +40,8 @@ $displayFreePracticeThreeResults = $sessionResultApi->getFreePracticeResults('Su
 $displayQualifyingResults = $qualifyingApi->getQualifyingResults('Suzuka');
 $displayRaceResults = $raceResultApi->getRaceResults('Suzuka');
 
+$displayFreePracticeOneResultsAustin = $sessionResultApi->getFreePracticeResults('Austin Free Practice 1');
+
 
 
 
@@ -69,6 +71,14 @@ echo 'Race Results:' . '<BR>';
 foreach ($displayRaceResults as $resultLine) {
     echo $resultLine . '<BR>';
 }
+
+echo '<BR>';
+echo 'Session Results Austin' . '<BR>';
+foreach ($displayFreePracticeOneResultsAustin as $resultLine) {
+    echo $resultLine . '<BR>';
+}
+
+
 
 //$lapTime = 134128;
 //$slowerLapTime = 154713;

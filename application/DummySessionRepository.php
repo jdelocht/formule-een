@@ -21,11 +21,13 @@ class DummySessionRepository implements SessionRepository
     {
         switch ($session) {
             case 'Suzuka Free Practice 1':
-                return $this->getFP1SessionResults();
+                return $this->getSuzukaFP1SessionResults();
             case 'Suzuka Free Practice 2':
-                return $this->getFP2SessionResults();
+                return $this->getSuzukaFP2SessionResults();
             case 'Suzuka Free Practice 3':
-                return $this->getFP3SessionResults();
+                return $this->getSuzukaFP3SessionResults();
+            case 'Austin Free Practice 1':
+                return $this->getAustinFP1SessionResults();
             }
         return [];
     }
@@ -33,38 +35,38 @@ class DummySessionRepository implements SessionRepository
     /**
      * @return array
      */
-    public function getFP1SessionResults()
+    public function getSuzukaFP1SessionResults()
     {
         return [
-            New SessionResult ('Nico Rosberg', 'Mercedes', 132431, 24),
-            New SessionResult ('Lewis Hamilton', 'Mercedes', 132646, 19),
-            New SessionResult ('Sebastian Vettel', 'Ferrari', 133525, 21),
-            New SessionResult ('Kimi Räikkönen', 'Ferrari', 133817, 17),
-            New SessionResult ('Daniel Ricciardo', 'Red Bull Racing', 134112, 23),
-            New SessionResult ('Max Verstappen', 'Red Bull Racing', 134379, 26),
-            New SessionResult ('Nico Hulkenberg', 'Force India', 134530, 28),
-            New SessionResult ('Sergio Perez', 'Force India', 134767, 30),
-            New SessionResult ('Fernando Alonso', 'McLaren', 135003, 10),
-            New SessionResult ('Valtteri Bottas', 'Williams', 135381, 31),
-            New SessionResult ('Daniil Kvyat', 'Torro Rosso', 135446, 23),
-            New SessionResult ('Carlos Sainz jr.', 'Torro Rosso', 135672, 27),
-            New SessionResult ('Jenson Button', 'McLaren', 135677, 24),
-            New SessionResult ('Romain Grosjean', 'Haas F1', 135688, 17),
-            New SessionResult ('Felipe Nasr', 'Sauber', 135667, 15),
-            New SessionResult ('Felipe Massa', 'Williams', 136169, 23),
-            New SessionResult ('Esteban Guitierezz', 'Haas F1', 136219, 21),
-            New SessionResult ('Marcus Ericsson', 'Sauber', 136882, 19),
-            New SessionResult ('Kevin Magnussen', 'Renault', 136822, 30),
-            New SessionResult ('Esteban Ocon', 'Manor F1', 137797, 29),
-            New SessionResult ('Pascal Wehrlein', 'Manor F1', 137966, 24),
-            New SessionResult ('Joylon Palmer', 'Renault', 137992, 13),
+            New SessionResult ('Nico Rosberg', 'Mercedes', 92.431, 24),
+            New SessionResult ('Lewis Hamilton', 'Mercedes', 92.646, 19),
+            New SessionResult ('Sebastian Vettel', 'Ferrari', 93.525, 21),
+            New SessionResult ('Kimi Räikkönen', 'Ferrari', 93.817, 17),
+            New SessionResult ('Daniel Ricciardo', 'Red Bull Racing', 94.112, 23),
+            New SessionResult ('Max Verstappen', 'Red Bull Racing', 94.379, 26),
+            New SessionResult ('Nico Hulkenberg', 'Force India', 94.530, 28),
+            New SessionResult ('Sergio Perez', 'Force India', 94.767, 30),
+            New SessionResult ('Fernando Alonso', 'McLaren', 95.003, 10),
+            New SessionResult ('Valtteri Bottas', 'Williams', 95.381, 31),
+            New SessionResult ('Daniil Kvyat', 'Torro Rosso', 95.446, 23),
+            New SessionResult ('Carlos Sainz jr.', 'Torro Rosso', 95.672, 27),
+            New SessionResult ('Jenson Button', 'McLaren', 95.677, 24),
+            New SessionResult ('Romain Grosjean', 'Haas F1', 95.688, 17),
+            New SessionResult ('Felipe Nasr', 'Sauber', 95.667, 15),
+            New SessionResult ('Felipe Massa', 'Williams', 96.169, 23),
+            New SessionResult ('Esteban Guitierezz', 'Haas F1', 96.219, 21),
+            New SessionResult ('Marcus Ericsson', 'Sauber', 96.882, 19),
+            New SessionResult ('Kevin Magnussen', 'Renault', 96.822, 30),
+            New SessionResult ('Esteban Ocon', 'Manor F1', 97.797, 29),
+            New SessionResult ('Pascal Wehrlein', 'Manor F1', 97.966, 24),
+            New SessionResult ('Joylon Palmer', 'Renault', 97.992, 13),
         ];
     }
 
     /**
      * @return array
      */
-    private function getFP2SessionResults()
+    private function getSuzukaFP2SessionResults()
     {
         return [
             New SessionResult('Nico Rosberg', 'Mercedes', 132250, 35),
@@ -95,7 +97,7 @@ class DummySessionRepository implements SessionRepository
     /**
      * @return array
      */
-    private function getFP3SessionResults()
+    private function getSuzukaFP3SessionResults()
     {
         return [
             New Sessionresult('Nico Rosberg', 'Mercedes', 132092, 14),
@@ -120,6 +122,14 @@ class DummySessionRepository implements SessionRepository
             New Sessionresult('Esteban Ocon', 'Manor F1', 135230, 13),
             New Sessionresult('Pascal Wehrlein', 'Manor F1', 137256, 10),
             New Sessionresult('Carlos Sainz', 'Torro Rosso', 156323, 3),
+        ];
+    }
+
+    private function getAustinFP1SessionResults()
+    {
+        return [
+            New SessionResult('Nico Rosberg', 'Mercedes', 92.092, 14),
+            New SessionResult('Lewis Hamilton', 'Mercedes', 93.284, 12),
         ];
     }
 }
