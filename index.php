@@ -8,6 +8,7 @@ require_once __DIR__ . '/domain/team/TeamHistory.php';
 require_once __DIR__ . '/domain/session_result/fp_session_result/SessionResult.php';
 require_once __DIR__ . '/domain/session_result/qualifying_result/QualifyingResult.php';
 require_once __DIR__ . '/domain/session_result/race_result/RaceResult.php';
+require_once __DIR__ . '/domain/functions/LapTimeConverter.php';
 require_once __DIR__ . '/infrastructure/FormulaOneApiFactory.php';
 require_once __DIR__ . '/application/DriverApi.php';
 require_once __DIR__ . '/application/DriverRepository.php';
@@ -38,6 +39,8 @@ $displayFreePracticeTwoResults = $sessionResultApi->getFreePracticeResults('Suzu
 $displayFreePracticeThreeResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 3');
 $displayQualifyingResults = $qualifyingApi->getQualifyingResults('Suzuka');
 $displayRaceResults = $raceResultApi->getRaceResults('Suzuka');
+
+
 
 
 

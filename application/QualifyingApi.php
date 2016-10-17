@@ -6,14 +6,20 @@ class QualifyingApi
      * @var QualifyingRepository
      */
     private $qualifyingRepository;
+    /**
+     * @var LapTimeConverter
+     */
+    private $lapTimeConverter;
 
     /**
      * QualifyingApi constructor.
      * @param QualifyingRepository $qualifyingRepository
+     * @param LapTimeConverter $lapTimeConverter
      */
-    public function __construct(QualifyingRepository $qualifyingRepository)
+    public function __construct(QualifyingRepository $qualifyingRepository, LapTimeConverter $lapTimeConverter)
     {
         $this->qualifyingRepository = $qualifyingRepository;
+        $this->lapTimeConverter = $lapTimeConverter;
     }
 
     /**
@@ -23,11 +29,11 @@ class QualifyingApi
      */
     public function getQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position)
     {
-        $lapTimeQ1 = getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingOneTime());
-        $lapTimeQ2 = getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingTwoTime());
-        $lapTimeQ3 = getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingThreeTime());
+        $lapTimeQ1 = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingOneTime());
+        $lapTimeQ2 = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingTwoTime());
+        $lapTimeQ3 = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingThreeTime());
 
-        return $position + 1 . '. ' . $qualifyingResult->getDriver() . ' ' . $qualifyingResult->getTeam() . ' ' . $lapTimeQ1 . ' ' . $lapTimeQ2 . ' ' . $lapTimeQ3 . ' ' . ' ' . $qualifyingResult->getNumberOfLaps();
+        return $position + 1 . '. ' . $qualifyingResult->getDriver() . ' ' . $qualifyingResult->getTeam() . ' ' . $lapTimeQ1 . ' ' . $lapTimeQ2 . ' ' . $lapTimeQ3  . ' ' . $qualifyingResult->getNumberOfLaps();
     }
 
     /**

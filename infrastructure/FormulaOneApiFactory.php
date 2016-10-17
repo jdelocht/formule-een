@@ -15,13 +15,17 @@ class FormulaOneApiFactory
     public static function getSessionResultApi()
     {
         return new SessionResultApi (
-            new DummySessionRepository
+            new DummySessionRepository,
+            new LapTimeConverter()
         );
     }
 
     public static function getQualifyingApi()
     {
-        return new QualifyingApi (new DummyQualifyingRepository);
+        return new QualifyingApi (
+            new DummyQualifyingRepository,
+            new LapTimeConverter()
+        );
     }
 
     public static function getRaceResultApi()

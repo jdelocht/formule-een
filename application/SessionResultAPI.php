@@ -10,14 +10,20 @@ class SessionResultApi
      * @var SessionRepository
      */
     private $sessionRepository;
+    /**
+     * @var LapTimeConverter
+     */
+    private $lapTimeConverter;
 
     /**
      * SessionResultApi constructor.
      * @param SessionRepository $sessionRepository
+     * @param LapTimeConverter $lapTimeConverter
      */
-    public function __construct(SessionRepository $sessionRepository)
+    public function __construct(SessionRepository $sessionRepository, LapTimeConverter $lapTimeConverter)
     {
         $this->sessionRepository = $sessionRepository;
+        $this->lapTimeConverter = $lapTimeConverter;
     }
 
     /**
@@ -29,14 +35,14 @@ class SessionResultApi
      */
     public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fastestLapTime = 0)
     {
-        $lapTime = getLapTimeForFreePracticeConverter($sessionResult->getLapTime());
+        $lapTime = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($sessionResult->getLapTime());
 
         $lapTimeDifferenceBetween = '';
         if ($showDifference) {
             $lapTimeDifferenceBetween = getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
         }
 
-        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();
+        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' .  $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();
     }
 
     /**
