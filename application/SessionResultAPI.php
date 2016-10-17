@@ -20,19 +20,25 @@ class SessionResultApi
         $this->sessionRepository = $sessionRepository;
     }
 
-    public function getResultsForSuzuka2016FreePractice1()
+    /**
+     * @param $session
+     * @return array
+     */
+    public function getFreePracticeResults($session)
     {
-        return $this->sessionRepository->getResultsForSession('Suzuka Free Practice 1');
-    }
-
-    public function getResultsForSuzuka2016FreePractice2()
-    {
-        return $this->sessionRepository->getResultsForSession('Suzuka Free Practice 2');
-    }
-
-    public function getResultsForSuzuka2016FreePractice3()
-    {
-        return $this->sessionRepository->getResultsForSession('Suzuka Free Practice 3');
+        $freePracticeSessionResults = $this->sessionRepository->getResultsForSession($session);
+        $freePracticeResults = [];
+        foreach ($freePracticeSessionResults as $position => $sessionResult) {
+            if ($position == 0) {
+                $showDifference = false;
+                $fasterLapTime = 0;
+            } else {
+                $showDifference = true;
+                $fasterLapTime = $freePracticeSessionResults[0]->getLapTime();
+            }
+            $freePracticeResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fasterLapTime);
+        }
+        return $freePracticeResults;
     }
 
     /**
@@ -46,56 +52,22 @@ class SessionResultApi
         $milliseconds = substr($time, 3, 3);
         return $minutes . ':' . $seconds . '.' . $milliseconds;
     }
-
     /**
      * @param SessionResult $sessionResult
      * @param $position
+     * @param $showDifference
+     * @param int $fastestLapTime
      * @return string
      */
-    public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position)
+    public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fastestLapTime = 0)
     {
         $lapTime = $this->convertLapTimeForFreePractice($sessionResult->getLapTime());
-
-        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $sessionResult->getNumberOfLaps();
-    }
-
-    /**
-     * @param $suzukaFP1SessionResults
-     * @return array
-     */
-    public function getFreePracticeOneResults($suzukaFP1SessionResults)
-    {
-        $freePracticeOneResults = [];
-        foreach ($suzukaFP1SessionResults as $position => $sessionResult) {
-            $freePracticeOneResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
+        $lapTimeDifferenceBetween = '';
+        if ($showDifference) {
+            $lapTimeDifferenceBetween = getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
         }
-        return $freePracticeOneResults;
+
+        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();
     }
 
-    /**
-     * @param $suzukaFP2SessionResults
-     * @return array
-     */
-    public function getFreePracticeTwoResults($suzukaFP2SessionResults)
-    {
-        $freePracticeTwoResults = [];
-        foreach ($suzukaFP2SessionResults as $position => $sessionResult) {
-            $freePracticeTwoResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
-        }
-        return $freePracticeTwoResults;
-    }
-
-    /**
-     * @param $suzukaFP3SessionResults
-     * @return array
-     */
-    public function getFreePracticeThreeResults($suzukaFP3SessionResults)
-    {
-        $freePracticeThreeResults = [];
-        foreach ($suzukaFP3SessionResults as $position => $sessionResult) {
-            $freePracticeThreeResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position);
-        }
-        return $freePracticeThreeResults;
-    }
 }
-

@@ -54,7 +54,7 @@ class DummySessionRepository implements SessionRepository
             New SessionResult ('Felipe Massa', 'Williams', 136169, 23),
             New SessionResult ('Esteban Guitierezz', 'Haas F1', 136219, 21),
             New SessionResult ('Marcus Ericsson', 'Sauber', 136882, 19),
-            New SessionResult ('Kevin Magnussen', 'Renault', 135822, 30),
+            New SessionResult ('Kevin Magnussen', 'Renault', 136822, 30),
             New SessionResult ('Esteban Ocon', 'Manor F1', 137797, 29),
             New SessionResult ('Pascal Wehrlein', 'Manor F1', 137966, 24),
             New SessionResult ('Joylon Palmer', 'Renault', 137992, 13),

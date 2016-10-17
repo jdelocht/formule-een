@@ -24,19 +24,19 @@ require_once __DIR__ . '/application/DummyQualifyingRepository.php';
 require_once __DIR__ . '/application/RaceResultApi.php';
 require_once __DIR__ . '/application/RaceRepository.php';
 require_once __DIR__ . '/application/DummyRaceRepository.php';
+require_once __DIR__ . '/application/lapTimeCalculator.php';
 
 $drivers = FormulaOneApiFactory::getDriverApi()->getDriverListForSeason2017();
 $teams = FormulaOneApiFactory::getTeamApi()->getTeamListFor2016();
-$suzukaFP1SessionResults = FormulaOneApiFactory::getSessionResultApi()->getResultsForSuzuka2016FreePractice1();
-$suzukaFP2SessionResults = FormulaOneApiFactory::getSessionResultApi()->getResultsForSuzuka2016FreePractice2();
-$suzukaFP3SessionResults = FormulaOneApiFactory::getSessionResultApi()->getResultsForSuzuka2016FreePractice3();
-$suzukaQualifyingResult = FormulaOneApiFactory::getQualifyingApi()->getResultsForSuzukaQualifying();
+$sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
+$qualifyingApi = FormulaOneApiFactory::getQualifyingApi();
+
 $suzukaRaceResult = FormulaOneApiFactory::getRaceResultApi()->getResultsForSuzukaRace();
 
-$displayFreePracticeOneResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeOneResults($suzukaFP1SessionResults);
-$displayFreePracticeTwoResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeTwoResults($suzukaFP1SessionResults);
-$displayFreePracticeThreeResults = FormulaOneApiFactory::getSessionResultApi()->getFreePracticeThreeResults($suzukaFP1SessionResults);
-$displayQualifyingResults = FormulaOneApiFactory::getQualifyingApi()->getQualifyingResults($suzukaQualifyingResult);
+$displayFreePracticeOneResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 1');
+$displayFreePracticeTwoResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 2');
+$displayFreePracticeThreeResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 3');
+$displayQualifyingResults = $qualifyingApi->getQualifyingResults('Suzuka');
 $displayRaceResults = FormulaOneApiFactory::getRaceResultApi()->getRaceResults($suzukaRaceResult);
 
 
@@ -68,73 +68,11 @@ foreach ($displayRaceResults as $resultLine) {
 }
 
 
+$lapTime = 134128;
+$slowerLapTime = 154713;
 
+echo getLapTimeDifferenceBetween($lapTime, $slowerLapTime);
 
-
-//Optie 1: onderstaande berekening zou kunnen werken, ook met de convertlaptimer. Het enige probleem is dat, wanneer de verschillen 10+ in sec worden, wat rare is maar wel met Sainz in Japan gebeurde, er een error komt. Wat zijn alternatieven?
-//Ook is het zo dat dit een berekening is, maar ik nog niet weet hoe ik van hieruit alle arraywaarden vergelijk met de sessiewinnaar.
-//misschien: http://stackoverflow.com/questions/8662539/php-compare-values-in-a-single-array-and-output-the-difference?
-
-
-$time = 134128;
-$time2 = 154713;
-
-
-
-/**
- * @param $time2
- * @return float
- */
-function convertTimeTwoForLapTimeDifferenceFreePractice($time2)
-{
-    $mins2 = floor($time2 / 100000);
-    $sec2 = floor($time2 / 1000) % 100;
-
-    $secondsForDifference2 = $mins2 * 60 + $sec2;
-    return $secondsForDifference2;
-}
-
-/**
- * @param $time
- * @return float
- */
-function convertTimeOneForLapTimeDifferenceFreePractice($time)
-{
-    $mins = floor($time / 100000);
-    $sec = floor($time / 1000) % 100;
-
-    return $mins * 60 + $sec;
-}
-
-/**
- * @param $time
- * @param $time2
- * @return array
- */
-function calculateDifferenceInLapTimeForFreePractice($time, $time2)
-{
-    $secondsForDifference1 = convertTimeOneForLapTimeDifferenceFreePractice($time);
-    $secondsForDifference2 = convertTimeTwoForLapTimeDifferenceFreePractice($time2);
-
-    $millisecs = floor($time % 1000);
-    $millisecs2 = floor($time2 % 1000);
-
-    $differenceSeconds = $secondsForDifference2 - $secondsForDifference1;
-    $differenceMilliseconds = $millisecs2 - $millisecs;
-    return array($differenceSeconds, $differenceMilliseconds);
-}
-
-/**
- * @param $time
- * @param $time2
- */
-function displayLapTimeDifferenceForFreePractice($time, $time2)
-{
-    list($differenceSeconds, $differenceMilliseconds) = calculateDifferenceInLapTimeForFreePractice($time, $time2);
-
-    echo '+' . $differenceSeconds . '.' . $differenceMilliseconds;
-}
-displayLapTimeDifferenceForFreePractice($time, $time2);
 
 
 
