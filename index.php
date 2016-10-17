@@ -26,7 +26,7 @@ require_once __DIR__ . '/application/RaceResultApi.php';
 require_once __DIR__ . '/application/RaceRepository.php';
 require_once __DIR__ . '/application/DummyRaceRepository.php';
 require_once __DIR__ . '/application/functions/lapTimeCalculator.php';
-require_once __DIR__ . '/application/functions/lapTimeConverter.php';
+
 
 $drivers = FormulaOneApiFactory::getDriverApi()->getDriverListForSeason2017();
 $teams = FormulaOneApiFactory::getTeamApi()->getTeamListFor2016();
