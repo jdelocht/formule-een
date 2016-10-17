@@ -17,31 +17,15 @@ class QualifyingApi
     }
 
     /**
-     * @param string $timeQ1
-     * @return string
-     */
-    public function convertLapTimeForQualifyingOne($timeQ1)
-    {
-        $minutesQ1 = substr($timeQ1, 0, 1);
-        $secondsQ1 = substr($timeQ1, 1, 2);
-        $millisecondsQ1 = substr($timeQ1, 3, 3);
-
-        if ($timeQ1 == 0)
-            return ' ';
-        return $minutesQ1 . ':' . $secondsQ1 . '.' . $millisecondsQ1;
-
-    }
-
-    /**
      * @param QualifyingResult $qualifyingResult
      * @param $position
      * @return string
      */
     public function getQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position)
     {
-        $lapTimeQ1 = $this->convertLapTimeForQualifyingOne($qualifyingResult->getQualifyingOneTime());
-        $lapTimeQ2 = $this->convertLapTimeForQualifyingOne($qualifyingResult->getQualifyingTwoTime());
-        $lapTimeQ3 = $this->convertLapTimeForQualifyingOne($qualifyingResult->getQualifyingThreeTime());
+        $lapTimeQ1 = getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingOneTime());
+        $lapTimeQ2 = getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingTwoTime());
+        $lapTimeQ3 = getLapTimeForFreePracticeConverter($qualifyingResult->getQualifyingThreeTime());
 
         return $position + 1 . '. ' . $qualifyingResult->getDriver() . ' ' . $qualifyingResult->getTeam() . ' ' . $lapTimeQ1 . ' ' . $lapTimeQ2 . ' ' . $lapTimeQ3 . ' ' . ' ' . $qualifyingResult->getNumberOfLaps();
     }

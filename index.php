@@ -24,20 +24,20 @@ require_once __DIR__ . '/application/DummyQualifyingRepository.php';
 require_once __DIR__ . '/application/RaceResultApi.php';
 require_once __DIR__ . '/application/RaceRepository.php';
 require_once __DIR__ . '/application/DummyRaceRepository.php';
-require_once __DIR__ . '/application/lapTimeCalculator.php';
+require_once __DIR__ . '/application/functions/lapTimeCalculator.php';
+require_once __DIR__ . '/application/functions/lapTimeConverter.php';
 
 $drivers = FormulaOneApiFactory::getDriverApi()->getDriverListForSeason2017();
 $teams = FormulaOneApiFactory::getTeamApi()->getTeamListFor2016();
 $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 $qualifyingApi = FormulaOneApiFactory::getQualifyingApi();
-
-$suzukaRaceResult = FormulaOneApiFactory::getRaceResultApi()->getResultsForSuzukaRace();
+$raceResultApi = FormulaOneApiFactory::getRaceResultApi();
 
 $displayFreePracticeOneResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 1');
 $displayFreePracticeTwoResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 2');
 $displayFreePracticeThreeResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 3');
 $displayQualifyingResults = $qualifyingApi->getQualifyingResults('Suzuka');
-$displayRaceResults = FormulaOneApiFactory::getRaceResultApi()->getRaceResults($suzukaRaceResult);
+$displayRaceResults = $raceResultApi->getRaceResults('Suzuka');
 
 
 
@@ -68,10 +68,10 @@ foreach ($displayRaceResults as $resultLine) {
 }
 
 
-$lapTime = 134128;
-$slowerLapTime = 154713;
-
-echo getLapTimeDifferenceBetween($lapTime, $slowerLapTime);
+//$lapTime = 134128;
+//$slowerLapTime = 154713;
+//
+//echo getLapTimeDifferenceBetween($lapTime, $slowerLapTime);
 
 
 

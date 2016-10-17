@@ -20,13 +20,7 @@ class RaceResultApi
         $this->raceRepository = $raceRepository;
     }
 
-    public function getResultsForSuzukaRace()
-    {
-        return $this->raceRepository->getResultsForRace('Suzuka');
-    }
-
-    /** @var RaceResult $raceResult */
-    /**
+    /** @var RaceResult $raceResult
      * @param $position
      * @param RaceResult $raceResult
      * @return string
@@ -37,13 +31,14 @@ class RaceResultApi
     }
 
     /**
-     * @param $suzukaRaceResult
+     * @param $raceSession
      * @return array
      */
-    public function getRaceResults($suzukaRaceResult)
+    public function getRaceResults($raceSession)
     {
+        $raceSessionForGrandPrixOf = $this->raceRepository->getResultsForRace($raceSession);
         $raceResults = [];
-        foreach ($suzukaRaceResult as $position => $raceResult) {
+        foreach ($raceSessionForGrandPrixOf as $position => $raceResult) {
             $raceResults[] = $this->getRaceResultsForTheFirstDriverInArray($position, $raceResult);
         }
         return $raceResults;

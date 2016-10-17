@@ -21,6 +21,25 @@ class SessionResultApi
     }
 
     /**
+     * @param SessionResult $sessionResult
+     * @param $position
+     * @param $showDifference
+     * @param int $fastestLapTime
+     * @return string
+     */
+    public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fastestLapTime = 0)
+    {
+        $lapTime = getLapTimeForFreePracticeConverter($sessionResult->getLapTime());
+
+        $lapTimeDifferenceBetween = '';
+        if ($showDifference) {
+            $lapTimeDifferenceBetween = getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
+        }
+
+        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();
+    }
+
+    /**
      * @param $session
      * @return array
      */
@@ -39,35 +58,6 @@ class SessionResultApi
             $freePracticeResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fasterLapTime);
         }
         return $freePracticeResults;
-    }
-
-    /**
-     * @param string $time
-     * @return string
-     */
-    public function convertLapTimeForFreePractice($time)
-    {
-        $minutes = substr($time, 0, 1);
-        $seconds = substr($time, 1, 2);
-        $milliseconds = substr($time, 3, 3);
-        return $minutes . ':' . $seconds . '.' . $milliseconds;
-    }
-    /**
-     * @param SessionResult $sessionResult
-     * @param $position
-     * @param $showDifference
-     * @param int $fastestLapTime
-     * @return string
-     */
-    public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fastestLapTime = 0)
-    {
-        $lapTime = $this->convertLapTimeForFreePractice($sessionResult->getLapTime());
-        $lapTimeDifferenceBetween = '';
-        if ($showDifference) {
-            $lapTimeDifferenceBetween = getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
-        }
-
-        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' . $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();
     }
 
 }
