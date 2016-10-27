@@ -7,4 +7,6 @@ interface SessionRepository
      * return SessionResult[]
      */
     public function getResultsForSession($session);
+    public function getResultsForQualifying($qualifying);
+    public function getResultsForRace($race);
 }

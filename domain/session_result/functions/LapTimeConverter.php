@@ -6,7 +6,7 @@ class LapTimeConverter
      * @param $lapTime
      * @return string
      */
-    public function getLapTimeForFreePracticeConverter($lapTime)
+    public function defineLapTimeForFreePracticeConverter($lapTime)
     {
         $explodedLapTime = explode('.', $lapTime);
 
@@ -16,8 +16,6 @@ class LapTimeConverter
 
         if ($lapTime == 0)
             return ' ';
-
-        return $minutes . ':' . $seconds . '.' . $milliseconds;
+        return $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT) . '.' . str_pad($milliseconds, 3, '0', STR_PAD_RIGHT);
     }
-
 }

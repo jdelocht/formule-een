@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @since 1.0
- * @author Echodes / Joost de Locht
- */
 class RaceResult
 {
     /**
@@ -23,17 +19,17 @@ class RaceResult
      */
     private $timeOrRetired;
     /**
-     * @var int
+     * @var string
      */
     private $championshipPoints;
 
     /**
      * RaceResult constructor.
-     * @param $driver
-     * @param $team
-     * @param $numberOfLaps
-     * @param $timeOrRetired
-     * @param $championshipPoints
+     * @param string $driver
+     * @param string $team
+     * @param int $numberOfLaps
+     * @param string $timeOrRetired
+     * @param int $championshipPoints
      */
     public function __construct($driver, $team, $numberOfLaps, $timeOrRetired, $championshipPoints)
     {

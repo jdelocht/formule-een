@@ -14,37 +14,32 @@ class SessionResultApi
      * @var LapTimeCalculator
      */
     private $lapTimeCalculator;
+    /**
+     * @var QualifyingResultsForTheFirstDriverInArray
+     */
+    private $qualifyingResultsForTheFirstDriverInArray;
+    /**
+     * @var RaceResultForTheFirstDriverInArray
+     */
+    private $raceResultForTheFirstDriverInArray;
 
     /**
      * SessionResultApi constructor.
      * @param SessionRepository $sessionRepository
      * @param LapTimeConverter $lapTimeConverter
      * @param LapTimeCalculator $lapTimeCalculator
+     * @param FreePracticeResultsForTheFirstDriverInArray $freePracticeResultsForTheFirstDriverInArray
+     * @param QualifyingResultsForTheFirstDriverInArray $qualifyingResultsForTheFirstDriverInArray
+     * @param RaceResultForTheFirstDriverInArray $raceResultForTheFirstDriverInArray
      */
-    public function __construct(SessionRepository $sessionRepository, LapTimeConverter $lapTimeConverter, LapTimeCalculator $lapTimeCalculator)
+    public function __construct(SessionRepository $sessionRepository, LapTimeConverter $lapTimeConverter, LapTimeCalculator $lapTimeCalculator, FreePracticeResultsForTheFirstDriverInArray $freePracticeResultsForTheFirstDriverInArray, QualifyingResultsForTheFirstDriverInArray $qualifyingResultsForTheFirstDriverInArray, RaceResultForTheFirstDriverInArray $raceResultForTheFirstDriverInArray)
     {
         $this->sessionRepository = $sessionRepository;
         $this->lapTimeConverter = $lapTimeConverter;
         $this->lapTimeCalculator = $lapTimeCalculator;
-    }
-
-    /**
-     * @param SessionResult $sessionResult
-     * @param $position
-     * @param $showDifference
-     * @param int $fastestLapTime
-     * @return string
-     */
-    public function getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fastestLapTime = 0)
-    {
-        $lapTime = $this->lapTimeConverter->getLapTimeForFreePracticeConverter($sessionResult->getLapTime());
-
-        $lapTimeDifferenceBetween = '';
-        if ($showDifference) {
-            $lapTimeDifferenceBetween = $this ->lapTimeCalculator->getLapTimeDifferenceBetween($fastestLapTime, $sessionResult->getLapTime()) . ' ';
-        }
-
-        return $position + 1 . '. ' . $sessionResult->getDriver() . ' ' . $sessionResult->getTeam() . ' ' .  $lapTime . ' ' . $lapTimeDifferenceBetween . $sessionResult->getNumberOfLaps();
+        $this->freePracticeResultsForTheFirstDriverInArray = $freePracticeResultsForTheFirstDriverInArray;
+        $this->qualifyingResultsForTheFirstDriverInArray = $qualifyingResultsForTheFirstDriverInArray;
+        $this->raceResultForTheFirstDriverInArray = $raceResultForTheFirstDriverInArray;
     }
 
     /**
@@ -63,9 +58,36 @@ class SessionResultApi
                 $showDifference = true;
                 $fasterLapTime = $freePracticeSessionResults[0]->getLapTime();
             }
-            $freePracticeResults[] = $this->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fasterLapTime);
+            $freePracticeResults[] = $this->freePracticeResultsForTheFirstDriverInArray->getFreePracticeResultForTheFirstDriverInArray($sessionResult, $position, $showDifference, $fasterLapTime);
         }
         return $freePracticeResults;
     }
 
+    /**
+     * @param $qualifyingSession
+     * @return array
+     */
+    public function getQualifyingResults($qualifyingSession)
+    {
+        $qualifyingSessionForGrandPrixOf = $this->sessionRepository->getResultsForQualifying($qualifyingSession);
+        $qualifyingResults = [];
+        foreach ($qualifyingSessionForGrandPrixOf as $position => $qualifyingResult) {
+            $qualifyingResults[] = $this->qualifyingResultsForTheFirstDriverInArray->getQualifyingResultsForTheFirstDriverInArray($qualifyingResult, $position);
+        }
+        return $qualifyingResults;
+    }
+
+    /**
+     * @param $raceSession
+     * @return array
+     */
+    public function getRaceResults($raceSession)
+    {
+        $raceSessionForGrandPrixOf = $this->sessionRepository->getResultsForRace($raceSession);
+        $raceResults = [];
+        foreach ($raceSessionForGrandPrixOf as $position => $raceResult) {
+            $raceResults[] = $this->raceResultForTheFirstDriverInArray->getRaceResultsForTheFirstDriverInArray($position, $raceResult);
+        }
+        return $raceResults;
+    }
 }
