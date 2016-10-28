@@ -52,11 +52,11 @@ class PdoSessionRepository implements SessionRepository
 //        return $results;
     public function getResultsForQualifying($qualifying)
     {
-        // TODO: Implement getResultsForQualifying() method.
+        return '';
     }
 
     public function getResultsForRace($race)
     {
-        // TODO: Implement getResultsForRace() method.
+        return '';
     }
 }
