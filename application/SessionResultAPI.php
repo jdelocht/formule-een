@@ -90,4 +90,11 @@ class SessionResultApi
         }
         return $raceResults;
     }
+
+    public function getSessionResultFromPDO($link)
+    {
+        return $this->sessionRepository->getResultsForSession($link);
+    }
 }
+
+echo 'hoi';

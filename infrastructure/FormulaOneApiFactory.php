@@ -30,14 +30,13 @@ class FormulaOneApiFactory
             $sessionRepository = new DummySessionRepository();
             return $sessionRepository;
         } else {
-            $databaseConnection = 'mysqli:dbname=gekkojdl;host=localhost';
+            $databaseConnection = 'mysql:dbname=phpmyadmin;host=localhost';
             $databaseUser = 'joost';
             $password = 'jdltest';
 
             try {
                 $link = new PDO($databaseConnection, $databaseUser, $password);
             } catch (PDOException $e) {
-                phpinfo();
                 die('Connection failed: ' . $e->getMessage());
             }
             $sessionRepository = new PdoSessionRepository ($link);

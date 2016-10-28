@@ -9,18 +9,17 @@ class PdoSessionRepository implements SessionRepository
 
     /**
      * PdoSessionRepository constructor.
-     * @param PDO $link
      */
-    public function __construct(PDO $link)
+    public function __construct()
     {
-        $this->link = $link;
     }
 
     /**
-     * @param $session
+     * @param $link
      * @return SessionResult[]
+     * @internal param $session
      */
-    public function getResultsForSession($session)
+    public function getResultsForSession($link)
     {
         $session = 'SELECT
               `driver`,
@@ -39,7 +38,7 @@ class PdoSessionRepository implements SessionRepository
         foreach ($this->link->query($session) as $row) {
             $sessionResults[] = $row['driver'] . $row['number'] . $row['nationality'] . $row['team'] . $row['grandprix'] . $row['sessionone'] . $row['sessiontwo'] . $row['sessionthree'] . $row['sessionfour'] . $row['sessionfive'];
         }
-        print_r($sessionResults);
+        return $sessionResults;
     }
 //
     // Doe een query om een array met de goede data te krijgen
@@ -50,12 +49,20 @@ class PdoSessionRepository implements SessionRepository
 //            $results[] =    -('..', '..', 94873465, 4);
 //        }
 //        return $results;
-    public function getResultsForQualifying($qualifying)
+    /**
+     * @param $link
+     * @return string
+     */
+    public function getResultsForQualifying($link)
     {
         return '';
     }
 
-    public function getResultsForRace($race)
+    /**
+     * @param $link
+     * @return string
+     */
+    public function getResultsForRace($link)
     {
         return '';
     }
