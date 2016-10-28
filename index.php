@@ -10,9 +10,10 @@ require_once __DIR__ . '/domain/session_result/QualifyingResultsForTheFirstDrive
 require_once __DIR__ . '/domain/session_result/RaceResultForTheFirstDriverInArray.php';
 require_once __DIR__ . '/domain/session_result/functions/LapTimeConverter.php';
 require_once __DIR__ . '/domain/session_result/functions/LapTimeDifferenceCalculator.php';
-require_once __DIR__ . '/application/SessionResultApi.php';
 require_once __DIR__ . '/application/SessionRepository.php';
 require_once __DIR__ . '/application/DummySessionRepository.php';
+require_once __DIR__ . '/application/SessionResultApi.php';
+require_once __DIR__ . '/application/PdoSessionRepository.php';
 
 $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 
@@ -48,5 +49,3 @@ echo 'Race Results:' . '<BR>';
 foreach ($displayRaceResults as $resultLine) {
     echo $resultLine . '<BR>';
 }
-
-echo 'hoi';

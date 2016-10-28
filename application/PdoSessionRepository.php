@@ -2,15 +2,8 @@
 
 class PdoSessionRepository implements SessionRepository
 {
-    /**
-     * @var PDO
-     */
-    private $link;
 
-    /**
-     * PdoSessionRepository constructor.
-     */
-    public function __construct()
+   public function __construct()
     {
     }
 
@@ -21,25 +14,28 @@ class PdoSessionRepository implements SessionRepository
      */
     public function getResultsForSession($link)
     {
-        $session = 'SELECT
-              `driver`,
-              `number`,
-              `nationality`,
-              `team`,
-              `grandprix`,
-              `sessionone`,
-              `sessiontwo`,
-              `sessionthree`,
-              `sessionfour`,
-              `sessionfive`
-              FROM `formulaone`';
-
-        $sessionResults = [];
-        foreach ($this->link->query($session) as $row) {
-            $sessionResults[] = $row['driver'] . $row['number'] . $row['nationality'] . $row['team'] . $row['grandprix'] . $row['sessionone'] . $row['sessiontwo'] . $row['sessionthree'] . $row['sessionfour'] . $row['sessionfive'];
-        }
-        return $sessionResults;
+        $session = new PdoSessionRepository($link);
+//        $session = 'SELECT
+//              `driver`,
+//              `number`,
+//              `nationality`,
+//              `team`,
+//              `grandprix`,
+//              `sessionone`,
+//              `sessiontwo`,
+//              `sessionthree`,
+//              `sessionfour`,
+//              `sessionfive`
+//              FROM `formulaone`';
+//
+//        $sessionResults = [];
+//        foreach ($link->query($session) as $row) {
+//            $sessionResults[] = $row['driver'] . $row['number'] . $row['nationality'] . $row['team'] . $row['grandprix'] . $row['sessionone'] . $row['sessiontwo'] . $row['sessionthree'] . $row['sessionfour'] . $row['sessionfive'];
+//        }
+//        echo $sessionResults;
     }
+
+
 //
     // Doe een query om een array met de goede data te krijgen
 

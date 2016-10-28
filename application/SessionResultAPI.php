@@ -97,4 +97,4 @@ class SessionResultApi
     }
 }
 
-echo 'hoi';
+

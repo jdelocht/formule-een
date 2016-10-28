@@ -27,19 +27,16 @@ class FormulaOneApiFactory
     public static function createSessionRepository($isInTestModus)
     {
         if ($isInTestModus) {
-            $sessionRepository = new DummySessionRepository();
-            return $sessionRepository;
+            return new DummySessionRepository();
         } else {
             $databaseConnection = 'mysql:dbname=phpmyadmin;host=localhost';
             $databaseUser = 'root';
-
             try {
                 $link = new PDO($databaseConnection, $databaseUser);
             } catch (PDOException $e) {
                 die('Connection failed: ' . $e->getMessage());
             }
-            $sessionRepository = new PdoSessionRepository ($link);
-            return $sessionRepository;
+            return new PdoSessionRepository($link);
         }
     }
 }
