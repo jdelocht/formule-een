@@ -18,7 +18,11 @@ class PdoSessionRepository implements SessionRepository
 
     public function getResultsForSession($session)
     {
-        $this->link->query($session);
+        if ($session = 'drivers') {
+            $query = 'SELECT `name` FROM `test`';
+
+            return $this->link->query($query);
+        } return '';
     }
 
     public function getResultsForQualifying($qualifying)

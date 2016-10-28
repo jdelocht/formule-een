@@ -91,10 +91,8 @@ class SessionResultApi
         return $raceResults;
     }
 
-    public function getSessionResultFromPDO($link)
+    public function getSessionResultFromPDO($session)
     {
-        return $this->sessionRepository->getResultsForSession($link);
+        return $this->sessionRepository->getResultsForSession($session);
     }
 }
-
-

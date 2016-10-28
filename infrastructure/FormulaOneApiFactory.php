@@ -29,10 +29,11 @@ class FormulaOneApiFactory
         if ($isInTestModus) {
             return new DummySessionRepository();
         } else {
-            $databaseConnection = 'mysql:dbname=phpmyadmin;host=localhost';
-            $databaseUser = 'root';
+            $databaseConnection = 'mysql:dbname=gekkojdl;host=localhost';
+            $databaseUser = 'joost';
+            $password = 'jdltest';
             try {
-                $link = new PDO($databaseConnection, $databaseUser);
+                $link = new PDO($databaseConnection, $databaseUser, $password);
             } catch (PDOException $e) {
                 die('Connection failed: ' . $e->getMessage());
             }
