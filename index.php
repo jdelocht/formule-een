@@ -1,6 +1,9 @@
 <?php
-use application\Test;
+
+use domain\session_result\fp_session_result\SessionResult;
 use infrastructure\FormulaOneApiFactory;
+
+//URL: http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=1
 
 error_reporting(E_ALL);
 
@@ -14,41 +17,17 @@ spl_autoload_register(function ($class) {
     echo $file . ' bestaat niet';
 });
 
-new Test();
 $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 
-//$displayFreePracticeOneResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 1');
-//$displayFreePracticeTwoResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 2');
-//$displayFreePracticeThreeResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 3');
-//$displayQualifyingResults = $sessionResultApi->getQualifyingResults('Suzuka');
-//$displayRaceResults = $sessionResultApi->getRaceResults('Suzuka');
-$displayPdoResults = $sessionResultApi->getSessionResultFromPDO('Mexico', 1);
+$grandPrix = $_GET['grandprix'];
+$session = $_GET['session'];
 
+$sessionResults = $sessionResultApi->getSessionResultFromPDO($grandPrix, $session);
 
-//echo '2016 FORMULA 1 EMIRATES JAPANESE GRAND PRIX' . '<BR>' . 'SUZUKA INTERNATIONAL RACING COURSE' . '<BR><BR>';
-//echo  'Free Practice One:' . '<BR>';
-//foreach ($displayFreePracticeOneResults as $resultLine) {
-//    echo $resultLine . '<BR>';
-//}
-//echo '<BR>';
-//echo 'Free Practice Two:' . '<BR>';
-//foreach ($displayFreePracticeTwoResults as $resultLine) {
-//    echo $resultLine . '<BR>';
-//}
-//echo '<BR>';
-//echo 'Free Practice Three:' . '<BR>';
-//foreach ($displayFreePracticeThreeResults as $resultLine) {
-//    echo $resultLine . '<BR>';
-//}
-//echo '<BR>';
-//echo 'Qualifying Results:' . '<BR>';
-//foreach ($displayQualifyingResults as $resultLine) {
-//    echo $resultLine . '<BR>';
-//}
-//echo '<BR>';
-//echo 'Race Results:' . '<BR>';
-//foreach ($displayRaceResults as $resultLine) {
-//    echo $resultLine . '<BR>';
-//}
+$i = 1;
+/** @var SessionResult $sessionResult */
+foreach($sessionResults as $sessionResult) {
+    echo $i . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTime() . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
+    $i++;
+}
 
-var_dump($displayPdoResults);
