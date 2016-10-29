@@ -1,5 +1,6 @@
 <?php
 use application\Test;
+use infrastructure\FormulaOneApiFactory;
 
 error_reporting(E_ALL);
 
@@ -14,6 +15,9 @@ spl_autoload_register(function ($class) {
 });
 
 new Test();
+$sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
+
+echo 'hoi';
 exit;
 
 require_once __DIR__ . '/infrastructure/FormulaOneApiFactory.php';
@@ -27,10 +31,9 @@ require_once __DIR__ . '/application/PdoSessionRepository.php';
 //require_once __DIR__ . '/domain/session_result/QualifyingResultsForTheFirstDriverInArray.php';
 //require_once __DIR__ . '/domain/session_result/RaceResultForTheFirstDriverInArray.php';
 //require_once __DIR__ . '/domain/session_result/functions/LapTimeConverter.php';
-//require_once __DIR__ . '/domain/session_result/functions/LapTimeDifferenceCalculator.php';
+//require_once __DIR__ . '/domain/session_result/functions/LapTimeCalculator.php';
 //require_once __DIR__ . '/application/DummySessionRepository.php';
 
-$sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 
 //$displayFreePracticeOneResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 1');
 //$displayFreePracticeTwoResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 2');

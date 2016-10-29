@@ -1,4 +1,8 @@
 <?php
+namespace domain\session_result;
+
+use domain\session_result\functions\LapTimeConverter;
+use domain\session_result\qualifying_result\QualifyingResult;
 
 class QualifyingResultsForTheFirstDriverInArray
 {

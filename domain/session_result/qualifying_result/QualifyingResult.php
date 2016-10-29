@@ -1,4 +1,5 @@
 <?php
+namespace domain\session_result\qualifying_result;
 
 class QualifyingResult
 {

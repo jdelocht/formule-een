@@ -1,4 +1,7 @@
 <?php
+namespace domain\session_result;
+
+use domain\session_result\race_result\RaceResult;
 
 class RaceResultForTheFirstDriverInArray
 {

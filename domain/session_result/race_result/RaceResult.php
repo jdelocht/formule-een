@@ -1,4 +1,5 @@
 <?php
+namespace domain\session_result\race_result;
 
 class RaceResult
 {

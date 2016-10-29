@@ -1,4 +1,5 @@
 <?php
+namespace domain\session_result\fp_session_result;
 
 class SessionResult
 {

@@ -1,4 +1,9 @@
 <?php
+namespace application;
+
+use domain\session_result\fp_session_result\SessionResult;
+use domain\session_result\qualifying_result\QualifyingResult;
+use domain\session_result\race_result\RaceResult;
 
 class DummySessionRepository implements SessionRepository
 {

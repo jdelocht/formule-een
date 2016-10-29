@@ -1,4 +1,11 @@
 <?php
+namespace application;
+
+use domain\session_result\FreePracticeResultsForTheFirstDriverInArray;
+use domain\session_result\functions\LapTimeCalculator;
+use domain\session_result\functions\LapTimeConverter;
+use domain\session_result\QualifyingResultsForTheFirstDriverInArray;
+use domain\session_result\RaceResultForTheFirstDriverInArray;
 
 class SessionResultApi
 {

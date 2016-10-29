@@ -1,4 +1,7 @@
 <?php
+namespace application;
+
+use PDO;
 
 class PdoSessionRepository implements SessionRepository
 {

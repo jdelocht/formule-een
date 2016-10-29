@@ -1,4 +1,18 @@
 <?php
+namespace infrastructure;
+
+
+use application\DummySessionRepository;
+use application\PdoSessionRepository;
+use application\SessionRepository;
+use application\SessionResultApi;
+use domain\session_result\FreePracticeResultsForTheFirstDriverInArray;
+use domain\session_result\functions\LapTimeCalculator;
+use domain\session_result\functions\LapTimeConverter;
+use domain\session_result\QualifyingResultsForTheFirstDriverInArray;
+use domain\session_result\RaceResultForTheFirstDriverInArray;
+use PDO;
+use PDOException;
 
 class FormulaOneApiFactory
 {

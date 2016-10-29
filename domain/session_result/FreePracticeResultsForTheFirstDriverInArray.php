@@ -1,4 +1,9 @@
 <?php
+namespace domain\session_result;
+
+use domain\session_result\fp_session_result\SessionResult;
+use domain\session_result\functions\LapTimeCalculator;
+use domain\session_result\functions\LapTimeConverter;
 
 class FreePracticeResultsForTheFirstDriverInArray
 {
