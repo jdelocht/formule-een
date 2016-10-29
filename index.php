@@ -17,30 +17,12 @@ spl_autoload_register(function ($class) {
 new Test();
 $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 
-echo 'hoi';
-exit;
-
-require_once __DIR__ . '/infrastructure/FormulaOneApiFactory.php';
-require_once __DIR__ . '/application/SessionRepository.php';
-require_once __DIR__ . '/application/SessionResultApi.php';
-require_once __DIR__ . '/application/PdoSessionRepository.php';
-//require_once __DIR__ . '/domain/session_result/fp_session_result/SessionResult.php';
-//require_once __DIR__ . '/domain/session_result/qualifying_result/QualifyingResult.php';
-//require_once __DIR__ . '/domain/session_result/race_result/RaceResult.php';
-//require_once __DIR__ . '/domain/session_result/FreePracticeResultsForTheFirstDriverInArray.php';
-//require_once __DIR__ . '/domain/session_result/QualifyingResultsForTheFirstDriverInArray.php';
-//require_once __DIR__ . '/domain/session_result/RaceResultForTheFirstDriverInArray.php';
-//require_once __DIR__ . '/domain/session_result/functions/LapTimeConverter.php';
-//require_once __DIR__ . '/domain/session_result/functions/LapTimeCalculator.php';
-//require_once __DIR__ . '/application/DummySessionRepository.php';
-
-
 //$displayFreePracticeOneResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 1');
 //$displayFreePracticeTwoResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 2');
 //$displayFreePracticeThreeResults = $sessionResultApi->getFreePracticeResults('Suzuka Free Practice 3');
 //$displayQualifyingResults = $sessionResultApi->getQualifyingResults('Suzuka');
 //$displayRaceResults = $sessionResultApi->getRaceResults('Suzuka');
-$displayPdoResults = $sessionResultApi->getSessionResultFromPDO('drivers');
+$displayPdoResults = $sessionResultApi->getSessionResultFromPDO('Mexico', 1);
 
 
 //echo '2016 FORMULA 1 EMIRATES JAPANESE GRAND PRIX' . '<BR>' . 'SUZUKA INTERNATIONAL RACING COURSE' . '<BR><BR>';
@@ -69,4 +51,4 @@ $displayPdoResults = $sessionResultApi->getSessionResultFromPDO('drivers');
 //    echo $resultLine . '<BR>';
 //}
 
-echo $displayPdoResults;
+var_dump($displayPdoResults);

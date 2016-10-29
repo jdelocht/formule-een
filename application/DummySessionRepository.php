@@ -14,7 +14,7 @@ class DummySessionRepository implements SessionRepository
     {
     }
 
-    public function getResultsForSession($session)
+    public function getResultsForSession($grandPrix, $session)
     {
         switch ($session) {
             case 'Suzuka Free Practice 1':

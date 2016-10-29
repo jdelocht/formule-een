@@ -53,9 +53,9 @@ class SessionResultApi
      * @param $session
      * @return array
      */
-    public function getFreePracticeResults($session)
+    public function getFreePracticeResults($grandPrix, $session)
     {
-        $freePracticeSessionResults = $this->sessionRepository->getResultsForSession($session);
+        $freePracticeSessionResults = $this->sessionRepository->getResultsForSession($grandPrix, $session);
         $freePracticeResults = [];
         foreach ($freePracticeSessionResults as $position => $sessionResult) {
             if ($position == 0) {
@@ -98,8 +98,8 @@ class SessionResultApi
         return $raceResults;
     }
 
-    public function getSessionResultFromPDO($session)
+    public function getSessionResultFromPDO($grandPrix, $session)
     {
-        return $this->sessionRepository->getResultsForSession($session);
+        return $this->sessionRepository->getResultsForSession($grandPrix, $session);
     }
 }

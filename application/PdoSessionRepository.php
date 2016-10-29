@@ -1,6 +1,7 @@
 <?php
 namespace application;
 
+use domain\session_result\fp_session_result\SessionResult;
 use PDO;
 
 class PdoSessionRepository implements SessionRepository
@@ -19,13 +20,16 @@ class PdoSessionRepository implements SessionRepository
         $this->link = $link;
     }
 
-    public function getResultsForSession($session)
+    public function getResultsForSession($grandPrix, $session)
     {
-        if ($session = 'drivers') {
-            $query = 'SELECT `name` FROM `test`';
+        $sessionResults = [];
+        $query = "SELECT `driver`, `team`, `lap_time`, `number_of_laps` FROM `formula_one_session_results`
+                 WHERE `grand_prix` = '$grandPrix' AND `session` = $session";
 
-            return $this->link->query($query);
-        } return '';
+        foreach ($this->link->query($query) as $row) {
+            $sessionResults[] = new SessionResult($row['driver'], $row['team'], $row['lap_time'], $row['number_of_laps']);
+        }
+        return $sessionResults;
     }
 
     public function getResultsForQualifying($qualifying)
