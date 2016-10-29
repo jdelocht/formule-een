@@ -22,12 +22,12 @@ $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 $grandPrix = $_GET['grandprix'];
 $session = $_GET['session'];
 
-$sessionResults = $sessionResultApi->getSessionResultFromPDO($grandPrix, $session);
+$sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
 
 $i = 1;
 /** @var SessionResult $sessionResult */
 foreach($sessionResults as $sessionResult) {
-    echo $i . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTime() . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
+    echo $i . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
     $i++;
 }
 

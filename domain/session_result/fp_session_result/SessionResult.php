@@ -54,4 +54,19 @@ class SessionResult
     {
         return $this->numberOfLaps;
     }
+
+    public function getLapTimeAsFormattedString()
+    {
+        if ($this->lapTime == 0) {
+            return ' ';
+        }
+
+        $explodedLapTime = explode('.', $this->lapTime);
+
+        $minutes = floor ($explodedLapTime[0] / 60);
+        $seconds = floor ($explodedLapTime[0] % 60);
+        $milliseconds = $explodedLapTime[1];
+
+        return $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT) . '.' . str_pad($milliseconds, 3, '0', STR_PAD_RIGHT);
+    }
 }

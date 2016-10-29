@@ -6,11 +6,7 @@ use application\DummySessionRepository;
 use application\PdoSessionRepository;
 use application\SessionRepository;
 use application\SessionResultApi;
-use domain\session_result\FreePracticeResultsForTheFirstDriverInArray;
 use domain\session_result\functions\LapTimeCalculator;
-use domain\session_result\functions\LapTimeConverter;
-use domain\session_result\QualifyingResultsForTheFirstDriverInArray;
-use domain\session_result\RaceResultForTheFirstDriverInArray;
 use PDO;
 use PDOException;
 
@@ -21,16 +17,7 @@ class FormulaOneApiFactory
         $isInTestModus = false;
         return new SessionResultApi (
             self::createSessionRepository($isInTestModus),
-            new LapTimeConverter,
-            new LapTimeCalculator,
-            new FreePracticeResultsForTheFirstDriverInArray(
-                new LapTimeConverter,
-                new LapTimeCalculator
-            ),
-            new QualifyingResultsForTheFirstDriverInArray(
-                new LapTimeConverter
-            ),
-            new RaceResultForTheFirstDriverInArray()
+            new LapTimeCalculator()
         );
     }
 
