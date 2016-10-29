@@ -1,9 +1,16 @@
 <?php
+use application\Test;
+
 error_reporting(E_ALL);
 
 spl_autoload_register(function ($class) {
-    echo $class;
-    require_once __DIR__ . '/application/' . $class . '.php';
+    $file = __DIR__  . '/' . str_replace('\\', '/', $class) . '.php';
+
+    if(file_exists($file)) {
+        require_once $file;
+        return;
+    }
+    echo $file . ' bestaat niet';
 });
 
 new Test();
