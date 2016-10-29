@@ -1,6 +1,14 @@
 <?php
 error_reporting(E_ALL);
 
+spl_autoload_register(function ($class) {
+    echo $class;
+    require_once __DIR__ . '/application/' . $class . '.php';
+});
+
+new Test();
+exit;
+
 require_once __DIR__ . '/infrastructure/FormulaOneApiFactory.php';
 require_once __DIR__ . '/application/SessionRepository.php';
 require_once __DIR__ . '/application/SessionResultApi.php';
