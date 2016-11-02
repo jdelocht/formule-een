@@ -6,7 +6,6 @@ use application\DummySessionRepository;
 use application\PdoSessionRepository;
 use application\SessionRepository;
 use application\SessionResultApi;
-use domain\session_result\functions\LapTimeCalculator;
 use PDO;
 use PDOException;
 
@@ -16,8 +15,7 @@ class FormulaOneApiFactory
     {
         $isInTestModus = false;
         return new SessionResultApi (
-            self::createSessionRepository($isInTestModus),
-            new LapTimeCalculator()
+            self::createSessionRepository($isInTestModus)
         );
     }
 

@@ -23,11 +23,13 @@ $grandPrix = $_GET['grandprix'];
 $session = $_GET['session'];
 
 $sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
+$lapTime = '';
+$slowerLapTime = '';
 
 $i = 1;
 /** @var SessionResult $sessionResult */
 foreach($sessionResults as $sessionResult) {
-    echo $i . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
+    echo $i . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->getLapTimeDifferenceBetween($lapTime, $slowerLapTime) . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
     $i++;
 }
 
