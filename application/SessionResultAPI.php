@@ -1,7 +1,7 @@
 <?php
 namespace application;
 
-use domain\session_result\fp_session_result\SessionResult;
+use domain\SessionResult;
 
 class SessionResultApi
 {
@@ -22,7 +22,7 @@ class SessionResultApi
     /**
      * @param string $grandPrix
      * @param int $session
-     * @return SessionResult[]
+     * @return SessionResult
      */
     public function getSessionResultFor($grandPrix, $session)
     {

@@ -1,7 +1,7 @@
 <?php
 namespace domain\session_result\fp_session_result;
 
-class SessionResult
+class ResultLine
 {
     /**
      * @var string
@@ -68,31 +68,5 @@ class SessionResult
         $milliseconds = $explodedLapTime[1];
 
         return $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT) . '.' . str_pad($milliseconds, 3, '0', STR_PAD_RIGHT);
-    }
-
-    /**
-     * @param $lapTime
-     * @param $slowerLapTime
-     * @return mixed
-     */
-    public function calculateLapTimeDifferenceBetween($lapTime, $slowerLapTime)
-    {
-        $difference = floor(($slowerLapTime - $lapTime) * 1000);
-        $differenceInSeconds = floor($difference / 1000);
-        $differenceInMilliseconds = floor($difference % 1000);
-
-        return $differenceInSeconds . '.' . str_pad($differenceInMilliseconds, 3, '0', STR_PAD_LEFT);
-    }
-
-    /**
-     * @param $lapTime
-     * @param $slowerLapTime
-     * @return string
-     */
-    public function getLapTimeDifferenceBetween($lapTime, $slowerLapTime)
-    {
-        $differenceBetweenLapTimes = $this->calculateLapTimeDifferenceBetween($lapTime, $slowerLapTime);
-
-        return '+' . $differenceBetweenLapTimes;
     }
 }
