@@ -28,4 +28,10 @@ class SessionResult
     {
         return $this->resultLines;
     }
+
+    public function getFirstResultLineLapTime() {
+
+        return $this->resultLines[0]->getLapTime();
+    }
+
 }

@@ -84,10 +84,9 @@ class ResultLine
         return '+'  . $differenceInSeconds . '.' . str_pad($differenceInMilliseconds, 3, '0', STR_PAD_LEFT);
     }
 
-    public function getDifferenceBetween()
+    public function getDifferenceBetween($lapTime, $slowerLapTime)
     {
-        $lapTime = $this->getLapTime();
-        $slowerLapTime = $this->getLapTime();
-        return $this->calculateLapTimeDifferenceBetween($lapTime, $slowerLapTime);
+            $lapTimeDifferenceBetween = $this->calculateLapTimeDifferenceBetween($lapTime, $slowerLapTime);
+        return $lapTimeDifferenceBetween;
     }
 }
