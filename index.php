@@ -22,16 +22,13 @@ $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 $grandPrix = $_GET['grandprix'];
 $session = $_GET['session'];
 
-$lapTime = $this->resultLines[0]->getLapTime();
-$slowerLapTime = $this->resultLines->getLapTime();
-
 $sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
 
 $i = 1;
 
 /** @var ResultLine $sessionResult */
 foreach($sessionResults->asArray() as $sessionResult) {
-    echo $i . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->calculateLapTimeDifferenceBetween() . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
+    echo $i . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->getDifferenceBetween() . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
     $i++;
 }
 
