@@ -20,7 +20,6 @@ $grandPrix = $_GET['grandprix'];
 $session = $_GET['session'];
 $sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
 $lapTime = $sessionResults->getFirstResultLineLapTime();
-$i = 1;
 
 echo '<HTML>
         <body bgcolor="lightgrey" text = "black">
@@ -36,15 +35,8 @@ echo '<HTML>
 
 echo '<br><br>';
 
-
 /** @var ResultLine $sessionResult */
-foreach($sessionResults->asArray() as $sessionResult) {
-    echo $i . ' | '
-        . $sessionResult->getDriver() . ' | '
-        . $sessionResult->getTeam() . ' | '
-        . $sessionResult->getLapTimeAsFormattedString() . ' | '
-        . $sessionResult->getDifferenceBetween($lapTime) . ' | '
-        . $sessionResult->getNumberOfLaps() . '<br>';
-    $i++;
+foreach($sessionResults->asArray() as $position => $sessionResult) {
+    echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->getDifferenceBetween($lapTime) . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';;
 }
 
