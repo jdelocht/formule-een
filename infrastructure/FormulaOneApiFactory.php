@@ -11,6 +11,9 @@ use PDOException;
 
 class FormulaOneApiFactory
 {
+    /**
+     * @return SessionResultApi
+     */
     public static function getSessionResultApi()
     {
         $isInTestModus = false;

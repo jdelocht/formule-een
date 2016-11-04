@@ -16,11 +16,11 @@ class RaceResult
      */
     private $numberOfLaps;
     /**
-     * @var int
+     * @var string
      */
     private $timeOrRetired;
     /**
-     * @var string
+     * @var int
      */
     private $championshipPoints;
 
@@ -41,26 +41,41 @@ class RaceResult
         $this->championshipPoints = $championshipPoints;
     }
 
+    /**
+     * @return string
+     */
     public function getDriver()
     {
         return $this->driver;
     }
 
+    /**
+     * @return string
+     */
     public function getTeam()
     {
         return $this->team;
     }
 
+    /**
+     * @return int
+     */
     public function getNumberOfLaps()
     {
         return $this->numberOfLaps;
     }
 
+    /**
+     * @return string
+     */
     public function getTimeOrRetired()
     {
         return $this->timeOrRetired;
     }
 
+    /**
+     * @return int
+     */
     public function getChampionshipPoints()
     {
         return $this->championshipPoints;

@@ -1,5 +1,6 @@
 <?php
 namespace domain;
+use domain\session_result\fp_session_result\ResultLine;
 
 /**
  * @since 1.0
@@ -8,13 +9,13 @@ namespace domain;
 class SessionResult
 {
     /**
-     * @var array
+     * @var ResultLine[]
      */
     private $resultLines;
 
     /**
      * SessionResult constructor.
-     * @param array $resultLines
+     * @param ResultLine[] $resultLines
      */
     public function __construct($resultLines)
     {
@@ -22,15 +23,18 @@ class SessionResult
     }
 
     /**
-     *
+     * @return ResultLine[]
      */
     public function asArray()
     {
         return $this->resultLines;
     }
 
+    /**
+     * @return int
+     */
     public function getFirstResultLineLapTime()
     {
-               return $this->resultLines[0]->getLapTime();
+        return $this->resultLines[0]->getLapTime();
     }
 }

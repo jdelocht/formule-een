@@ -35,34 +35,51 @@ class QualifyingResult
         $this->numberOfLaps = $numberOfLaps;
     }
 
+    /**
+     * @return string
+     */
     public function getDriver()
     {
         return $this->driver;
     }
 
+    /**
+     * @return string
+     */
     public function getTeam()
     {
         return $this->team;
     }
 
+    /**
+     * @return int
+     */
     public function getQualifyingOneTime()
     {
         return $this->qualifyingOneTime;
     }
 
+    /**
+     * @return int
+     */
     public function getQualifyingTwoTime()
     {
         return $this->qualifyingTwoTime;
     }
 
+    /**
+     * @return int
+     */
     public function getQualifyingThreeTime()
     {
         return $this->qualifyingThreeTime;
     }
 
+    /**
+     * @return mixed
+     */
     public function getNumberOfLaps()
     {
         return $this->numberOfLaps;
     }
 }
-// Q1 107% time - 1:38.075 Note - Vettel penalised 3 grid places for causing a collision at previous round. Wehrlein and Raikkonen penalised 5 grid places for unscheduled gearbox changes. Button penalised 35 grid places for unscheduled power unit element changes.

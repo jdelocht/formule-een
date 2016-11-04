@@ -35,26 +35,41 @@ class ResultLine
         $this->numberOfLaps = $numberOfLaps;
     }
 
+    /**
+     * @return string
+     */
     public function getDriver()
     {
         return $this->driver;
     }
 
+    /**
+     * @return string
+     */
     public function getTeam()
     {
         return $this->team;
     }
 
+    /**
+     * @return int
+     */
     public function getLapTime()
     {
         return $this->lapTime;
     }
 
+    /**
+     * @return int
+     */
     public function getNumberOfLaps()
     {
         return $this->numberOfLaps;
     }
 
+    /**
+     * @return string
+     */
     public function getLapTimeAsFormattedString()
     {
         if ($this->lapTime == 0) {
@@ -84,6 +99,10 @@ class ResultLine
         return '+'  . $differenceInSeconds . '.' . str_pad($differenceInMilliseconds, 3, '0', STR_PAD_LEFT);
     }
 
+    /**
+     * @param $lapTime
+     * @return mixed
+     */
     public function getDifferenceBetween($lapTime)
     {
         $lapTimeDifferenceBetween = $this->calculateLapTimeDifferenceBetween($lapTime, $this->getLapTime());

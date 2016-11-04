@@ -22,6 +22,11 @@ class PdoSessionRepository implements SessionRepository
         $this->link = $link;
     }
 
+    /**
+     * @param string $grandPrix
+     * @param int $session
+     * @return SessionResult
+     */
     public function getResultsForSession($grandPrix, $session)
     {
         $resultLines = [];
@@ -33,15 +38,5 @@ class PdoSessionRepository implements SessionRepository
             $resultLines[] = new ResultLine($row['driver'], $row['team'], $row['lap_time'], $row['number_of_laps']);
         }
         return new SessionResult($resultLines);
-    }
-
-    public function getResultsForQualifying($qualifying)
-    {
-        // TODO: Implement getResultsForQualifying() method.
-    }
-
-    public function getResultsForRace($race)
-    {
-        // TODO: Implement getResultsForRace() method.
     }
 }

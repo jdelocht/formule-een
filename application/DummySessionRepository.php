@@ -14,6 +14,11 @@ class DummySessionRepository implements SessionRepository
     {
     }
 
+    /**
+     * @param string $grandPrix
+     * @param int $session
+     * @return array
+     */
     public function getResultsForSession($grandPrix, $session)
     {
         switch ($session) {
@@ -89,7 +94,7 @@ class DummySessionRepository implements SessionRepository
     /**
      * @return array
      */
-    private function getSuzukaFP2SessionResults()
+    public function getSuzukaFP2SessionResults()
     {
         return [
             New ResultLine('Nico Rosberg', 'Mercedes', 92.250, 35),
@@ -120,7 +125,7 @@ class DummySessionRepository implements SessionRepository
     /**
      * @return array
      */
-    private function getSuzukaFP3SessionResults()
+    public function getSuzukaFP3SessionResults()
     {
         return [
             New ResultLine('Nico Rosberg', 'Mercedes', 92.092, 14),
@@ -179,7 +184,10 @@ class DummySessionRepository implements SessionRepository
         ];
     }
 
-    private function getSuzukaRaceResult()
+    /**
+     * @return array
+     */
+    public function getSuzukaRaceResult()
     {
         return [
             new RaceResult('Nico Rosbeg', 'Mercedes', 53, '1:26:43.333', 25),
@@ -207,7 +215,10 @@ class DummySessionRepository implements SessionRepository
         ];
     }
 
-    private function getAustinFP1SessionResults()
+    /**
+     * @return array
+     */
+    public function getAustinFP1SessionResults()
     {
         return [
             New ResultLine('Lewis Hamilton', 'Mercedes', 00.000, 0),
@@ -235,7 +246,10 @@ class DummySessionRepository implements SessionRepository
         ];
     }
 
-    private function getAustinFP2SessionResults()
+    /**
+     * @return array
+     */
+    public function getAustinFP2SessionResults()
     {
         return [
             New ResultLine('Lewis Hamilton', 'Mercedes', 00.000, 0),
@@ -263,7 +277,10 @@ class DummySessionRepository implements SessionRepository
         ];
     }
 
-    private function getAustinFP3SessionResults()
+    /**
+     * @return array
+     */
+    public function getAustinFP3SessionResults()
     {
         return [
             New ResultLine('Lewis Hamilton', 'Mercedes', 00.000, 0),

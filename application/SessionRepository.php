@@ -10,6 +10,4 @@ interface SessionRepository
      * @return
      */
     public function getResultsForSession($grandPrix, $session);
-    public function getResultsForQualifying($qualifying);
-    public function getResultsForRace($race);
 }
