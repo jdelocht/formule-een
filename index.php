@@ -22,6 +22,21 @@ $sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
 $lapTime = $sessionResults->getFirstResultLineLapTime();
 $i = 1;
 
+echo '<HTML>
+        <body bgcolor="lightgrey" text = "black">
+            <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=1">Free Practice One</a><br>
+            <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=2">Free Practice Two</a><br>
+            <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=3">Free Practice Three</a><br>
+            <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=4">Qualifying One</a><br>
+            <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=5">Qualifying Two</a><br>
+            <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=6">Qualifying Three</a><br>
+            <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=7">Race</a>
+        <body>
+    </HTML><br>';
+
+echo '<br><br>';
+
+
 /** @var ResultLine $sessionResult */
 foreach($sessionResults->asArray() as $sessionResult) {
     echo $i . ' | '
