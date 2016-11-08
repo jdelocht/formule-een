@@ -1,6 +1,6 @@
 <?php
 namespace domain;
-use domain\session_result\fp_session_result\ResultLine;
+use domain\session_result\ResultLine;
 
 /**
  * @since 1.0
