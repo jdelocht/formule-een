@@ -93,6 +93,7 @@ class ResultLine
     public function calculateLapTimeDifferenceBetween($lapTime, $slowerLapTime)
     {
         $difference = floor(($slowerLapTime - $lapTime) * 1000);
+
         $differenceInSeconds = floor($difference / 1000);
         $differenceInMilliseconds = floor($difference % 1000);
 
