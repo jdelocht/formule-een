@@ -28,14 +28,14 @@ function getGrandPrixForTitle($grandPrix)
     } return '';
 }
 
-function getSessionForTitle($session)
+function getTitleForSession($session)
 {
     if ($session == 1) {
         return 'FREE PRACTICE ONE RESULTS';
     } if ($session == 2) {
-        return 'FREE PRACTICE ONE RESULTS';
+        return 'FREE PRACTICE TWO RESULTS';
     } if ($session == 3) {
-        return 'FREE PRACTICE ONE RESULTS';
+        return 'FREE PRACTICE THREE RESULTS';
     } if ($session == 4 || $session == 5 || $session == 6) {
         return 'QUALIFYING RESULTS';
     } if ($session == 7) {
@@ -62,10 +62,12 @@ function getSessionForTitle($session)
 
 <?php
 
-echo '<h3>' . getGrandPrixForTitle($grandPrix) . ' - ' . getSessionForTitle($session) . '</h3>';
+echo '<h3>' . getGrandPrixForTitle($grandPrix) . ' - ' . getTitleForSession($session) . '</h3>';
 /** @var ResultLine $sessionResult */
 foreach($sessionResults->asArray() as $position => $sessionResult) {
-    if ($session == 4 || $session == 5 || $session == 6) {
+    if ($session == 7) {
+        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
+    } elseif ($session == 4 || $session == 5 || $session == 6) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' .  $sessionResult->getLapTimeAsFormattedString() . ' | ' .  $sessionResult->getLapTimeAsFormattedString() . ' | '  . $sessionResult->getNumberOfLaps() . '<br>';
     } elseif($position == 0) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . ' ' . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
