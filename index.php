@@ -21,6 +21,10 @@ $session = $_GET['session'];
 $sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
 $lapTime = $sessionResults->getFirstResultLineLapTime();
 
+/**
+ * @param $grandPrix
+ * @return string
+ */
 function getGrandPrixForTitle($grandPrix)
 {
     if ($grandPrix == 'mexico') {
@@ -28,6 +32,10 @@ function getGrandPrixForTitle($grandPrix)
     } return '';
 }
 
+/**
+ * @param $session
+ * @return string
+ */
 function getTitleForSession($session)
 {
     if ($session == 1) {
