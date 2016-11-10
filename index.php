@@ -63,7 +63,9 @@ function getTitleForSession($session)
                 <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=1" class = "button">Free Practice One</a>
                 <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=2" class = "button">Free Practice Two</a>
                 <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=3" class = "button">Free Practice Three</a>
-                <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=4" class = "button">Qualifying</a>
+                <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=4" class = "button">Qualifying One</a>
+                <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=5" class = "button">Qualifying Two</a>
+                <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=6" class = "button">Qualifying Three</a>
                 <a href = "http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=7" class = "button">Race</a>
             </div>
             <div class="division2">
@@ -77,8 +79,6 @@ foreach($sessionResults->asArray() as $position => $sessionResult) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
     } elseif ($session == 7) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getDifferenceBetween($lapTime) . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
-    } elseif ($session == 4 || $session == 5 || $session == 6) {
-        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' .  $sessionResult->getLapTimeAsFormattedString() . ' | ' .  $sessionResult->getLapTimeAsFormattedString() . ' | '  . $sessionResult->getNumberOfLaps() . '<br>';
     } elseif($position == 0) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . ' ' . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
     } else
