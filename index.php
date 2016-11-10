@@ -22,32 +22,25 @@ $sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
 $lapTime = $sessionResults->getFirstResultLineLapTime();
 
 /**
- * @param $grandPrix
- * @return string
- */
-function getGrandPrixForTitle($grandPrix)
-{
-    if ($grandPrix == 'mexico') {
-        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016';
-    } return '';
-}
-
-/**
  * @param $session
  * @return string
  */
-function getTitleForSession($session)
+function getTitleForSession($grandPrix, $session)
 {
-    if ($session == 1) {
-        return 'FREE PRACTICE ONE RESULTS';
-    } if ($session == 2) {
-        return 'FREE PRACTICE TWO RESULTS';
-    } if ($session == 3) {
-        return 'FREE PRACTICE THREE RESULTS';
-    } if ($session == 4 || $session == 5 || $session == 6) {
-        return 'QUALIFYING RESULTS';
-    } if ($session == 7) {
-        return 'RACE RESULTS';
+    if ($grandPrix == 'mexico' && $session == 1) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE ONE RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 2) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE TWO RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 3) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE THREE RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 4) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING ONE RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 5) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING TWO RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 6) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING THREE RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 7) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO - 2016 RACE RESULTS';
     } return '';
 }
 
@@ -72,7 +65,8 @@ function getTitleForSession($session)
 
 <?php
 
-echo '<h3>' . getGrandPrixForTitle($grandPrix) . ' - ' . getTitleForSession($session) . '</h3>';
+echo '<h3>' . getTitleForSession($grandPrix, $session) . '</h3>';
+
 /** @var ResultLine $sessionResult */
 foreach($sessionResults->asArray() as $position => $sessionResult) {
     if ($session == 7 && $position == 0) {
