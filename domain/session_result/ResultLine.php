@@ -72,8 +72,17 @@ class ResultLine
      */
     public function getLapTimeAsFormattedString()
     {
-        if ($this->lapTime == 0) {
-            return ' ';
+        if ($this->lapTime == 999) {
+            return 'DNF';
+        }
+        if ($this->lapTime == 991) {
+            return '+1 laps';
+        }
+        if ($this->lapTime == 992) {
+            return '+2 laps';
+        }
+        if ($this->lapTime == 993) {
+            return '+3 laps';
         }
 
         $explodedLapTime = explode('.', $this->lapTime);
