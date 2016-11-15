@@ -84,7 +84,18 @@ class ResultLine
     /**
      * @return string
      */
-    public function getLapTimeAsFormattedStringForRace() {
+    public function getRaceDurationOrException() {
+        if($this->getLapTime() >= 9991) {
+            return $this->getRaceDurationException();
+        }
+        return $this->getRaceTimeFormattedAsString();
+    }
+
+    /**
+     * @return string
+     */
+    public function getRaceDurationException()
+    {
         if ($this->lapTime == 9991) {
             return '+1 laps';
         }
@@ -109,13 +120,20 @@ class ResultLine
         if ($this->lapTime == 10000) {
             return 'DNS';
         }
+        return '';
         // Cars having covered less than 90% of the number of laps covered by the winner (rounded down to the nearest whole number of laps), will not be classified.
+    }
 
+    /**
+     * @return string
+     */
+    public function getRaceTimeFormattedAsString()
+    {
         $explodedLapTime = explode('.', $this->lapTime);
 
-        $hours = floor ($explodedLapTime[0] / 3600);
-        $minutes = floor (($explodedLapTime[0] / 60) % 60);
-        $seconds = floor ($explodedLapTime[0] % 100);
+        $hours = floor($explodedLapTime[0] / 3600);
+        $minutes = floor(($explodedLapTime[0] / 60) % 60);
+        $seconds = floor($explodedLapTime[0] % 100);
         $milliseconds = $explodedLapTime[1];
 
         return $hours . ':' . $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT) . '.' . str_pad($milliseconds, 3, '0', STR_PAD_RIGHT);
