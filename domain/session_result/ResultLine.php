@@ -72,9 +72,6 @@ class ResultLine
      */
     public function getLapTimeAsFormattedString()
     {
-        if ($this->lapTime == 999) {
-            return 'DNF';
-        }
         if ($this->lapTime == 991) {
             return '+1 laps';
         }
@@ -84,6 +81,19 @@ class ResultLine
         if ($this->lapTime == 993) {
             return '+3 laps';
         }
+        if ($this->lapTime == 994) {
+            return '+4 laps';
+        }
+        if ($this->lapTime == 995) {
+            return '+5 laps';
+        }
+        if ($this->lapTime == 996) {
+            return '+6 laps';
+        }
+        if ($this->lapTime == 999) {
+            return 'DNF';
+        }
+        // Cars having covered less than 90% of the number of laps covered by the winner (rounded down to the nearest whole number of laps), will not be classified.
 
         $explodedLapTime = explode('.', $this->lapTime);
 
