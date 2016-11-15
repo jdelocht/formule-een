@@ -72,9 +72,9 @@ echo '<h3>' . getTitleForSession($grandPrix, $session) . '</h3>';
 /** @var ResultLine $sessionResult */
 foreach($sessionResults->asArray() as $position => $sessionResult) {
     if ($session == 7 && $position == 0) {
-        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
-    }  elseif ($session == 7 && $sessionResult->getLapTime() == 991 || $sessionResult->getLapTime() == 992 || $sessionResult->getLapTime() == 993 || $sessionResult->getLapTime() == 999) {
-        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
+        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getLapTimeAsFormattedStringForRace() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
+    }  elseif ($session == 7 && $sessionResult->getLapTime() >= 991) {
+        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getLapTimeAsFormattedStringForRace() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
     } elseif ($session == 7) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getDifferenceBetween($lapTime) . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
     } elseif($position == 0) {

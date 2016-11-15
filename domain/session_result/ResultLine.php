@@ -72,6 +72,16 @@ class ResultLine
      */
     public function getLapTimeAsFormattedString()
     {
+        $explodedLapTime = explode('.', $this->lapTime);
+
+        $minutes = floor ($explodedLapTime[0] / 60);
+        $seconds = floor ($explodedLapTime[0] % 60);
+        $milliseconds = $explodedLapTime[1];
+
+        return $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT) . '.' . str_pad($milliseconds, 3, '0', STR_PAD_RIGHT);
+    }
+
+    public function getLapTimeAsFormattedStringForRace() {
         if ($this->lapTime == 991) {
             return '+1 laps';
         }
@@ -93,15 +103,19 @@ class ResultLine
         if ($this->lapTime == 999) {
             return 'DNF';
         }
+        if ($this->lapTime == 1000) {
+            return 'DNS';
+        }
         // Cars having covered less than 90% of the number of laps covered by the winner (rounded down to the nearest whole number of laps), will not be classified.
 
         $explodedLapTime = explode('.', $this->lapTime);
 
-        $minutes = floor ($explodedLapTime[0] / 60);
-        $seconds = floor ($explodedLapTime[0] % 60);
+        $hours = floor ($explodedLapTime[0] / 3600);
+        $minutes = floor (($explodedLapTime[0] / 60) % 60);
+        $seconds = floor ($explodedLapTime[0] % 100);
         $milliseconds = $explodedLapTime[1];
 
-        return $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT) . '.' . str_pad($milliseconds, 3, '0', STR_PAD_RIGHT);
+        return $hours . ':' . $minutes . ':' . str_pad($seconds, 2, '0', STR_PAD_LEFT) . '.' . str_pad($milliseconds, 3, '0', STR_PAD_RIGHT);
     }
 
     /**
