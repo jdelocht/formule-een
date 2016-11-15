@@ -96,32 +96,33 @@ class ResultLine
      */
     public function getRaceDurationException()
     {
-        if ($this->lapTime == 9991) {
-            return '+1 laps';
-        }
-        if ($this->lapTime == 9992) {
-            return '+2 laps';
-        }
-        if ($this->lapTime == 9993) {
-            return '+3 laps';
-        }
-        if ($this->lapTime == 9994) {
-            return '+4 laps';
-        }
-        if ($this->lapTime == 9995) {
-            return '+5 laps';
-        }
-        if ($this->lapTime == 9996) {
-            return '+6 laps';
-        }
-        if ($this->lapTime == 9999) {
-            return 'DNF';
-        }
         if ($this->lapTime == 10000) {
             return 'DNS';
         }
+        if ($this->lapTime >= 9999) {
+            return 'DNF';
+        }
+        if ($this->lapTime >= 9996) {
+            return '+6 laps';
+        }
+        if ($this->lapTime >= 9995) {
+            return '+5 laps';
+        }
+        if ($this->lapTime >= 9994) {
+            return '+4 laps';
+        }
+        if ($this->lapTime >= 9993) {
+            return '+3 laps';
+        }
+        if ($this->lapTime >= 9992) {
+            return '+2 laps';
+        }
+        if ($this->lapTime >= 9991) {
+            return '+1 laps';
+        }
         return '';
         // Cars having covered less than 90% of the number of laps covered by the winner (rounded down to the nearest whole number of laps), will not be classified.
+        // Drivers are sorted by laptime. Therefore, to get the right results when multiple drivers are in the same lap, the first one to cross the line will be classified as 9991.01 when +1 laps behind. The second one will be 9991.02, the third 9992.03, etc.
     }
 
     /**

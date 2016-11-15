@@ -73,7 +73,9 @@ echo '<h3>' . getTitleForSession($grandPrix, $session) . '</h3>';
 foreach($sessionResults->asArray() as $position => $sessionResult) {
     if ($session == 7 && $position == 0) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
-    }  elseif ($session == 7 && $sessionResult->getLapTime() >= 9991) {
+    } elseif ($session == 7 && $sessionResult->getLapTime() >= 9999) {
+        echo 'NC' . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
+    } elseif ($session == 7 && $sessionResult->getLapTime() >= 9991) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
     } elseif ($session == 7) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getDifferenceBetween($lapTime) . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
