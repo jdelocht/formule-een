@@ -28,4 +28,13 @@ class SessionResultApi
     {
         return $this->sessionRepository->getResultsForSession($grandPrix, $session);
     }
+
+    /**
+     * @param $season
+     * @return mixed
+     */
+    public function getResultsForSeason($season)
+    {
+        return $this->sessionRepository->getResultsForSeason($season);
+    }
 }

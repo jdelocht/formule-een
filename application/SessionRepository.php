@@ -10,4 +10,10 @@ interface SessionRepository
      * @return
      */
     public function getResultsForSession($grandPrix, $session);
+
+    /**
+     * @param $season
+     * @return mixed
+     */
+    public function getResultsForSeason($season);
 }
