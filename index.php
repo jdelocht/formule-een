@@ -1,6 +1,7 @@
 <?php
 
 use domain\session_result\ResultLine;
+use domain\SessionResult;
 use infrastructure\FormulaOneApiFactory;
 
 //URL: http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=1
@@ -22,11 +23,12 @@ $sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
 $lapTime = $sessionResults->getFirstResultLineLapTime();
 
 
-
 ?>
+<!DOCTYPE html>
 <HTML>
         <head>
             <link rel="stylesheet" type="text/css" href="style.css">
+            <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
         </head>
 
         <body bgcolor="lightgrey" text = "black">
@@ -71,13 +73,13 @@ echo '<h3>' . getTitleForSession($grandPrix, $session) . '</h3>';
 
 /** @var ResultLine $sessionResult */
 foreach($sessionResults->asArray() as $position => $sessionResult) {
-    if ($session == 7 && $position == 0) {
+    if ($session == SessionResult::Race && $position == 0) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
-    } elseif ($session == 7 && $sessionResult->getLapTime() >= 9999) {
+    } elseif ($session == SessionResult::Race && $sessionResult->getLapTime() >= 9999) {
         echo 'NC' . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
-    } elseif ($session == 7 && $sessionResult->getLapTime() >= 9991) {
+    } elseif ($session == SessionResult::Race && $sessionResult->getLapTime() >= 9991) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
-    } elseif ($session == 7) {
+    } elseif ($session == SessionResult::Race) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getDifferenceBetween($lapTime) . ' | ' . $sessionResults->getPointsForSession($position) . '<br>';
     } elseif($position == 0) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . ' ' . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
@@ -86,4 +88,5 @@ foreach($sessionResults->asArray() as $position => $sessionResult) {
 }
 ?>
             </div>
+     </body>
 </HTML>
