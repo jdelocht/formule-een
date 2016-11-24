@@ -5,7 +5,6 @@ use domain\session_result\ResultLine;
 use domain\SessionResult;
 use infrastructure\FormulaOneApiFactory;
 
-//URL: http://localhost:63342/formulaone2017/index.php?grandprix=mexico&session=1
 error_reporting(E_ALL);
 spl_autoload_register(function ($class) {
     $file = __DIR__  . '/' . str_replace('\\', '/', $class) . '.php';
@@ -18,12 +17,16 @@ spl_autoload_register(function ($class) {
 });
 
 $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
-$grandPrix = $_GET['grandprix'];
+$grandPrixName = $_GET['grandprix'];
 $session = $_GET['session'];
 $season = '2016';
 
-$sessionResults = $sessionResultApi->getSessionResultFor($grandPrix, $session);
+//$sessionResults = $sessionResultApi->getSessionResultFor($grandPrixName, $session);
 $seasonResults = $sessionResultApi->getResultsForSeason($season);
+
+$grandPrix = $sessionResultApi->getGrandPrix($grandPrixName, $season);
+$sessionResults = $grandPrix->getSessionResult($session);
+
 $lapTime = $sessionResults->getFirstResultLineLapTime();
 
 
@@ -60,21 +63,21 @@ function getTitleForSession($grandPrix, $session)
     if ($grandPrix == 'mexico' && $session == 1) {
         return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE ONE RESULTS';
     } if ($grandPrix == 'mexico' && $session == 2) {
-    return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE TWO RESULTS';
-} if ($grandPrix == 'mexico' && $session == 3) {
-    return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE THREE RESULTS';
-} if ($grandPrix == 'mexico' && $session == 4) {
-    return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING ONE RESULTS';
-} if ($grandPrix == 'mexico' && $session == 5) {
-    return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING TWO RESULTS';
-} if ($grandPrix == 'mexico' && $session == 6) {
-    return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING THREE RESULTS';
-} if ($grandPrix == 'mexico' && $session == 7) {
-    return 'FORMULA 1 GRAN PREMIO DE MÉXICO - 2016 RACE RESULTS';
-} return '';
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE TWO RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 3) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE THREE RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 4) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING ONE RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 5) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING TWO RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 6) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING THREE RESULTS';
+    } if ($grandPrix == 'mexico' && $session == 7) {
+        return 'FORMULA 1 GRAN PREMIO DE MÉXICO - 2016 RACE RESULTS';
+    } return '';
 }
 
-echo '<h3>' . getTitleForSession($grandPrix, $session) . '</h3>';
+echo '<h3>' . getTitleForSession($grandPrixName, $session) . '</h3>';
 
 /** @var ResultLine $sessionResult */
 foreach($sessionResults->asArray() as $position => $sessionResult) {

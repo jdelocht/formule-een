@@ -2,16 +2,13 @@
 namespace application;
 
 use domain\season_result\SeasonResultLine;
-use domain\SeasonResult;
 use domain\session_result\ResultLine;
 use domain\SessionResult;
 use PDO;
 
 class PdoSessionRepository implements SessionRepository
 {
-    /**
-     * @var PDO
-     */
+    /**  @var PDO */
     private $link;
 
     /**
