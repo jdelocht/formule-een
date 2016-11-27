@@ -1,6 +1,8 @@
 <?php
 namespace application;
 
+use domain\SeasonResult;
+
 interface SessionRepository
 {
     /**
@@ -9,11 +11,11 @@ interface SessionRepository
      * return SessionResult
      * @return
      */
-    public function getResultsForSession($grandPrix, $session);
+    public function getResultsFor($grandPrix, $session);
 
     /**
      * @param $season
-     * @return mixed
+     * @return SeasonResult
      */
-    public function getResultsForSeason($season);
+    public function getDriversChampionshipResultsFor($season);
 }

@@ -7,17 +7,11 @@ namespace domain;
  */
 class GrandPrix
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $grandPrixName;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $season;
-    /**
-     * @var array
-     */
+    /** @var array */
     private $sessions;
 
     /**
@@ -37,8 +31,31 @@ class GrandPrix
      * @param int $session
      * @return SessionResult
      */
-    public function getSessionResult($session)
+    public function getResultsFor($session)
     {
         return $this->sessions[$session];
+    }
+
+    /** @param $grandPrix
+    * @param $session
+    * @return string
+    */
+    public function getTitleForMexican($grandPrix, $session)
+    {
+        if ($grandPrix == 'mexico' && $session == 1) {
+            return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE ONE RESULTS';
+        } if ($grandPrix == 'mexico' && $session == 2) {
+            return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE TWO RESULTS';
+        } if ($grandPrix == 'mexico' && $session == 3) {
+            return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - FREE PRACTICE THREE RESULTS';
+        } if ($grandPrix == 'mexico' && $session == 4) {
+            return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING ONE RESULTS';
+        } if ($grandPrix == 'mexico' && $session == 5) {
+            return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING TWO RESULTS';
+        } if ($grandPrix == 'mexico' && $session == 6) {
+            return 'FORMULA 1 GRAN PREMIO DE MÉXICO 2016 - QUALIFYING THREE RESULTS';
+        } if ($grandPrix == 'mexico' && $session == 7) {
+            return 'FORMULA 1 GRAN PREMIO DE MÉXICO - 2016 RACE RESULTS';
+        } return '';
     }
 }

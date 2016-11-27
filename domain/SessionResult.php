@@ -17,9 +17,7 @@ class SessionResult
     const Race = 7;
     const FastestLapRace = 8;
 
-    /**
-     * @var ResultLine[]
-     */
+    /** @var ResultLine[] */
     private $resultLines;
 
     /**

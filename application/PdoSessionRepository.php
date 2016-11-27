@@ -2,6 +2,7 @@
 namespace application;
 
 use domain\season_result\SeasonResultLine;
+use domain\SeasonResult;
 use domain\session_result\ResultLine;
 use domain\SessionResult;
 use PDO;
@@ -25,7 +26,7 @@ class PdoSessionRepository implements SessionRepository
      * @param int $session
      * @return SessionResult
      */
-    public function getResultsForSession($grandPrix, $session)
+    public function getResultsFor($grandPrix, $session)
     {
         $resultLines = [];
         $query = "SELECT `driver`, `team`, `lap_time`, `number_of_laps` FROM `formula_one_session_results`
@@ -43,7 +44,7 @@ class PdoSessionRepository implements SessionRepository
      * @param int $season
      * @return SeasonResultLine[] $seasonResultLine
      */
-    public function getResultsForSeason($season)
+    public function getDriversChampionshipResultsFor($season)
     {
         $seasonResultLine = [];
         $query = "SELECT `driver`, `team`, `australia`, `bahrain`, `china`, `russia`, `spain`, `monaco`, `canada`, `azerbeidzjan`, `austria`, `great_britain`, `hungary`, `germany`, `belgium`, `italy`, `singapore`, `malaysia`, `japan`, `united_states`, `mexico`, `brazil`, `abu_dhabi`
@@ -53,6 +54,6 @@ class PdoSessionRepository implements SessionRepository
         foreach ($this->link->query($query) as $row) {
             $seasonResultLine[] = new SeasonResultLine($row['driver'], $row['team'], $row['australia'], $row['bahrain'], $row['china'], $row['russia'], $row['spain'], $row['monaco'], $row['canada'], $row['azerbeidzjan'], $row['austria'], $row['great_britain'], $row['hungary'], $row['germany'], $row['belgium'], $row['italy'], $row['singapore'], $row['malaysia'], $row['japan'], $row['united_states'], $row['mexico'], $row['brazil'], $row['abu_dhabi']);
         }
-        return $seasonResultLine;
+        return new SeasonResult($seasonResultLine);
     }
 }

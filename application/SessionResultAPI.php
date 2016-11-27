@@ -2,20 +2,18 @@
 namespace application;
 
 use domain\GrandPrix;
-use domain\session_result\ResultLine;
+use domain\SeasonResult;
 use domain\SessionResult;
 
 class SessionResultApi
 {
-    /**
-     * @var SessionRepository
-     */
+    /**  @var SessionRepository */
     private $sessionRepository;
 
     /**
      * SessionResultApi constructor.
      * @param SessionRepository $sessionRepository
-    */
+     */
     public function __construct(SessionRepository $sessionRepository)
     {
         $this->sessionRepository = $sessionRepository;
@@ -28,16 +26,16 @@ class SessionResultApi
      */
     public function getSessionResultFor($grandPrix, $session)
     {
-        return $this->sessionRepository->getResultsForSession($grandPrix, $session);
+        return $this->sessionRepository->getResultsFor($grandPrix, $session);
     }
 
     /**
      * @param int $season
-     * @return mixed
+     * @return SeasonResult
      */
-    public function getResultsForSeason($season)
+    public function getDriverChampionshipStandingFor($season)
     {
-        return $this->sessionRepository->getResultsForSeason($season);
+        return $this->sessionRepository->getDriversChampionshipResultsFor($season);
     }
 
     /**

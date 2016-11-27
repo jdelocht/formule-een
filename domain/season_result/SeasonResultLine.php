@@ -7,55 +7,78 @@ namespace domain\season_result;
  */
 class SeasonResultLine
 {
+    /** @var string */
     private $driver;
-    private $australia;
-    private $bahrain;
-    private $china;
-    private $russia;
-    private $spain;
-    private $monaco;
-    private $canada;
-    private $azerbeidzjan;
-    private $austria;
-    private $greatBritain;
-    private $hungary;
-    private $germany;
-    private $belgium;
-    private $italy;
-    private $singapore;
-    private $malaysia;
-    private $japan;
-    private $unitedStates;
-    private $mexico;
-    private $brazil;
-    private $abuDhabi;
+    /** @var string  */
     private $team;
+    /** @var int  */
+    private $australia;
+    /** @var int  */
+    private $bahrain;
+    /** @var int  */
+    private $china;
+    /** @var int  */
+    private $russia;
+    /** @var int  */
+    private $spain;
+    /** @var int  */
+    private $monaco;
+    /** @var int  */
+    private $canada;
+    /** @var int  */
+    private $azerbeidzjan;
+    /** @var int  */
+    private $austria;
+    /** @var int  */
+    private $greatBritain;
+    /** @var int  */
+    private $hungary;
+    /** @var int  */
+    private $germany;
+    /** @var int  */
+    private $belgium;
+    /** @var int  */
+    private $italy;
+    /** @var int  */
+    private $singapore;
+    /** @var int  */
+    private $malaysia;
+    /** @var int  */
+    private $japan;
+    /** @var int  */
+    private $unitedStates;
+    /** @var int  */
+    private $mexico;
+    /** @var int  */
+    private $brazil;
+    /** @var int  */
+    private $abuDhabi;
 
     /**
      * Season constructor.
-     * @param $driver
-     * @param $team
-     * @param $australia
-     * @param $bahrain
-     * @param $china
-     * @param $russia
-     * @param $spain
-     * @param $monaco
-     * @param $canada
-     * @param $azerbeidzjan
-     * @param $austria
-     * @param $greatBritain
-     * @param $hungary
-     * @param $germany
-     * @param $belgium
-     * @param $italy
-     * @param $singapore
-     * @param $malaysia
-     * @param $japan
-     * @param $unitedStates
-     * @param $mexico
-     * @param $brazil
-     * @param $abuDhabi
+     * @param string $driver
+     * @param string $team
+     * @param int $australia
+     * @param int $bahrain
+     * @param int $china
+     * @param int $russia
+     * @param int $spain
+     * @param int $monaco
+     * @param int $canada
+     * @param int $azerbeidzjan
+     * @param int $austria
+     * @param int $greatBritain
+     * @param int $hungary
+     * @param int $germany
+     * @param int $belgium
+     * @param int $italy
+     * @param int $singapore
+     * @param int $malaysia
+     * @param int $japan
+     * @param int $unitedStates
+     * @param int $mexico
+     * @param int $brazil
+     * @param int $abuDhabi
      */
     public function __construct($driver, $team, $australia, $bahrain, $china, $russia, $spain, $monaco, $canada, $azerbeidzjan, $austria, $greatBritain, $hungary, $germany, $belgium, $italy, $singapore, $malaysia, $japan, $unitedStates, $mexico, $brazil, $abuDhabi)
     {
@@ -268,6 +291,9 @@ class SeasonResultLine
         return $this->unitedStates;
     }
 
+    /**
+     * @return int
+     */
     public function calculateDriverStandingsTotalPoints() {
         $totalPoints =  $this->getAustralia() + $this->getBahrain() + $this->getChina() + $this->getRussia() + $this->getSpain() + $this->getMonaco() + $this->getCanada() + $this->getAzerbeidzjan() + $this->getAustria() + $this->getGreatBritain() + $this->getHungary() + $this->getGermany() + $this->getBelgium() + $this->getItaly() + $this->getSingapore() + $this->getMalaysia() + $this->getJapan() + $this->getUnitedStates() + $this->getMexico() + $this->getBrazil() + $this->getAbuDhabi();
 

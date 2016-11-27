@@ -3,21 +3,13 @@ namespace domain\session_result;
 
 class ResultLine
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $driver;
-    /**
-     * @var string
-     */
+    /** @var string */
     private $team;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $lapTime;
-    /**
-     * @var int
-     */
+    /** @var int */
     private $numberOfLaps;
 
     /**
@@ -143,7 +135,7 @@ class ResultLine
     /**
      * @param $lapTime
      * @param $slowerLapTime
-     * @return mixed
+     * @return string
      */
     public function calculateLapTimeDifferenceBetween($lapTime, $slowerLapTime)
     {
@@ -157,7 +149,7 @@ class ResultLine
 
     /**
      * @param $lapTime
-     * @return mixed
+     * @return string
      */
     public function getDifferenceBetween($lapTime)
     {
