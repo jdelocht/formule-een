@@ -27,6 +27,4 @@ class SeasonResult
     {
         return $this->seasonResultLine;
     }
-
-
 }

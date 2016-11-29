@@ -19,14 +19,12 @@ spl_autoload_register(function ($class) {
 $sessionResultApi = FormulaOneApiFactory::getSessionResultApi();
 $requestedGrandPrix = $_GET['grandprix'];
 $requestedSession = $_GET['session'];
-$season = $_GET['season'];
-$a = 10;
-$b = 20;
+$requestedSeason = $_GET['season'];
 
-$seasonResults = $sessionResultApi->getDriverChampionshipStandingFor($season);
-$grandPrixResults = $sessionResultApi->getGrandPrix($requestedGrandPrix, $season);
+$seasonResults = $sessionResultApi->getDriverChampionshipStandingFor($requestedSeason);
+$grandPrixResults = $sessionResultApi->getGrandPrix($requestedGrandPrix, $requestedSeason);
 $results = $grandPrixResults->getResultsFor($requestedSession);
-$lapTime = $results->getFirstResultLineLapTime();
+$lapTimes = $results->getFirstResultLinesLapTime();
 
 
 ?>
@@ -57,17 +55,17 @@ echo '<h3>' . $grandPrixResults->getTitleForMexican($requestedGrandPrix, $reques
 /** @var ResultLine $sessionResult */
 foreach($results->asArray() as $position => $sessionResult) {
     if ($requestedSession == SessionResult::Race && $position == 0) {
-        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $results->getPointsForSession($position) . '<br>';
+        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $results->getRaceResultPointPerGrandPrixAsDedicatedPer($position) . '<br>';
     } elseif ($requestedSession == SessionResult::Race && $sessionResult->getLapTime() >= 9999) {
-        echo 'NC' . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $results->getPointsForSession($position) . '<br>';
+        echo 'NC' . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $results->getRaceResultPointPerGrandPrixAsDedicatedPer($position) . '<br>';
     } elseif ($requestedSession == SessionResult::Race && $sessionResult->getLapTime() >= 9991) {
-        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $results->getPointsForSession($position) . '<br>';
+        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getRaceDurationOrException() . ' | ' . $results->getRaceResultPointPerGrandPrixAsDedicatedPer($position) . '<br>';
     } elseif ($requestedSession == SessionResult::Race) {
-        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getDifferenceBetween($lapTime) . ' | ' . $results->getPointsForSession($position) . '<br>';
+        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getNumberOfLaps() . ' | ' . $sessionResult->getDifferenceBetween($lapTimes) . ' | ' . $results->getRaceResultPointPerGrandPrixAsDedicatedPer($position) . '<br>';
     } elseif($position == 0) {
         echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . ' ' . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
     } else
-        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->getDifferenceBetween($lapTime) . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
+        echo $position + 1 . ' | ' . $sessionResult->getDriver() . ' | ' . $sessionResult->getTeam() . ' | ' . $sessionResult->getLapTimeAsFormattedString() . ' | ' . $sessionResult->getDifferenceBetween($lapTimes) . ' | ' . $sessionResult->getNumberOfLaps() . '<br>';
 }
 ?>
             </div>
@@ -76,11 +74,11 @@ foreach($results->asArray() as $position => $sessionResult) {
 
 <?php
 
-echo '<h3>' . $season . ' DRIVER STANDINGS</h3>';
+echo '<h3>' . $requestedSeason . ' DRIVER STANDINGS</h3>';
 
 /** @var SeasonResultLine $seasonResult */
 foreach($seasonResults->asArray() as $position => $seasonResult) {
-    echo $position + 1 . ' ' . $seasonResult->getDriver() . ' | ' . $seasonResult->getTeam() . ' | ' . $seasonResult->getAustralia() . ' | ' . $seasonResult->getBahrain() . ' | ' . $seasonResult->getChina() . ' | ' . $seasonResult->getRussia() . ' | ' . $seasonResult->getSpain() . ' | ' . $seasonResult->getMonaco() . ' | ' . $seasonResult->getCanada() . ' | ' . $seasonResult->getAzerbeidzjan() . ' | ' . $seasonResult->getAustria() . ' | ' . $seasonResult->getGreatBritain() . ' | ' . $seasonResult->getHungary() . ' | ' . $seasonResult->getGermany() . ' | ' . $seasonResult->getBelgium() . ' | ' . $seasonResult->getItaly() . ' | ' . $seasonResult->getSingapore() . ' | ' . $seasonResult->getMalaysia() . ' | ' . $seasonResult->getJapan() . ' | ' . $seasonResult->getUnitedStates() . ' | ' . $seasonResult->getMexico() . ' | ' . $seasonResult->getBrazil() . ' | ' . $seasonResult->getAbuDhabi() . ' | ' . $seasonResult->calculateDriverStandingsTotalPoints() . '<BR>';
+    echo $position + 1 . ' ' . $seasonResult->getDriver() . ' | ' . $seasonResult->getTeam() . ' | ' . $seasonResult->getAustralia() . ' | ' . $seasonResult->getBahrain() . ' | ' . $seasonResult->getChina() . ' | ' . $seasonResult->getRussia() . ' | ' . $seasonResult->getSpain() . ' | ' . $seasonResult->getMonaco() . ' | ' . $seasonResult->getCanada() . ' | ' . $seasonResult->getAzerbeidzjan() . ' | ' . $seasonResult->getAustria() . ' | ' . $seasonResult->getGreatBritain() . ' | ' . $seasonResult->getHungary() . ' | ' . $seasonResult->getGermany() . ' | ' . $seasonResult->getBelgium() . ' | ' . $seasonResult->getItaly() . ' | ' . $seasonResult->getSingapore() . ' | ' . $seasonResult->getMalaysia() . ' | ' . $seasonResult->getJapan() . ' | ' . $seasonResult->getUnitedStates() . ' | ' . $seasonResult->getMexico() . ' | ' . $seasonResult->getBrazil() . ' | ' . $seasonResult->getAbuDhabi() . ' | ' . $seasonResult->calculateTotalChampionshipPointsForDriverStandings() . '<BR>';
 }
 ?>
             </div>

@@ -24,18 +24,18 @@ class SessionResultApi
      * @param int $session
      * @return SessionResult
      */
-    public function getSessionResultFor($grandPrix, $session)
+    public function getSessionResultsFor($grandPrix, $session)
     {
         return $this->sessionRepository->getResultsFor($grandPrix, $session);
     }
 
     /**
-     * @param int $season
+     * @param int $requestedSeason
      * @return SeasonResult
      */
-    public function getDriverChampionshipStandingFor($season)
+    public function getDriverChampionshipStandingFor($requestedSeason)
     {
-        return $this->sessionRepository->getDriversChampionshipResultsFor($season);
+        return $this->sessionRepository->getDriversChampionshipResultsFor($requestedSeason);
     }
 
     /**
@@ -56,7 +56,7 @@ class SessionResultApi
         ];
         $sessionsResults = [];
         foreach ($sessions as $session) {
-            $sessionsResults[$session] = $this->getSessionResultFor($grandPrixName, $session);
+            $sessionsResults[$session] = $this->getSessionResultsFor($grandPrixName, $session);
         }
         return new GrandPrix($grandPrixName, $season, $sessionsResults);
     }

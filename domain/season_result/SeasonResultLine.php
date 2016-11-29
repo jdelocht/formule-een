@@ -294,7 +294,7 @@ class SeasonResultLine
     /**
      * @return int
      */
-    public function calculateDriverStandingsTotalPoints() {
+    public function calculateTotalChampionshipPointsForDriverStandings() {
         $totalPoints =  $this->getAustralia() + $this->getBahrain() + $this->getChina() + $this->getRussia() + $this->getSpain() + $this->getMonaco() + $this->getCanada() + $this->getAzerbeidzjan() + $this->getAustria() + $this->getGreatBritain() + $this->getHungary() + $this->getGermany() + $this->getBelgium() + $this->getItaly() + $this->getSingapore() + $this->getMalaysia() + $this->getJapan() + $this->getUnitedStates() + $this->getMexico() + $this->getBrazil() + $this->getAbuDhabi();
 
         return $totalPoints;

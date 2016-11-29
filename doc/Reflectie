@@ -1,0 +1,34 @@
+Reflectie
+
+Om de basis van programmeren in PHP-codetaal heb ik geprobeerd om de Formule 1 uit te drukken in code.
+Hierbij is het mij gelukt om de verschillende sessies van een Grand Prix in beeld te brengen. Ook heb ik seizoensresultaten tot op zekere
+hoogte kunnen tonen in een browser. Het project heb ik verschillende keren opnieuw uitgewerkt, met als doel steeds meer verdieping te vinden
+in de codetaal. Daarnaast heb ik ook enige ervaring opgedaan met Object Oriented Programming en Domain Driven Design. Ook heb ik geleerd om
+waarden op te halen uit zowel dummydata als een daadwerkelijke database, en heb ik geleerd hoe ik programma's installeer die het voor mij
+makkelijker maken om te werken met lokale opslag en daarbij het tonen van data.
+
+Ik ben vastgelopen op de plek waar ik nu aangekomen ben, en ik weet nu dat als ik hiermee verder ga ik alles opnieuw wil doen en met de kennis
+die ik nu heb alles anders wil doen. Ik heb geleerd om over domeinen na te denken en OOP vanaf de start van een project toe te passen.
+Ik wil daarom een nieuwe poging wagen, met als beoogd resultaat dat verschillen met hoe ik voorheen werkte zichtbaar worden. Op die manier
+wil ik de voor- en nadelen van OOP en DDD afwegen en leren waarom en hoe ik met deze methoden werk. Daarom wil ik ook graag met hetzelfde
+onderwerp aan de slag gaan.
+
+De manier waarop ik te werk ben gegaan kent verschillen in vergelijking tot hoe raceresultaten en racen in het echte leven wordt benaderd.
+Dit komt omdat Formule 1 binnen de racewereld een complexe situatie met veel inhoud is. Hierdoor heb ik het gevoel dat ik het overzicht snel
+kwijt ben geraakt, en het zicht ben verloren op hetgeen wat ertoe doet. Het is dus beter om eerst een stap terug te doen en racen in het
+algemeen te benaderen, waarna verdieping gezocht kan worden. Dus wil ik nu een beter voorbeeld nemen aan de manier waarop racen benaderd
+wordt wanneer ik zelf ga karten. Van daaruit kan ik de vertaalslag maken naar hoe Formule 1 werkt.
+Ik kan met het bouwen van een applicatie voor Formule 1 of Racing in het algemeen nog heel veel leren op gebied van programmeren in OOP en DDD,
+en daarom wil ik opnieuw beginnen en vanuit de structuur die ik gezien heb terwijl ik met Joop meewerkte aan het opstarten van het brood-
+bakprogramma waar hij mee bezig is. Ik heb nu zeker nog anderhalve maand om deze leerplannen uit te werken en er alles aan te doen om met
+deze leermogelijkheden zo goed mogelijk voorbereid te beginnen in de academie.
+
+Als laatste heeft het project me geholpen met het werken met GIT en PHPstorm, waarbij ik vooral veel gehad heb aan het werken met PHPstorm. Zo
+kan ik deze nu voor mij laten werken, wat programmeren een stuk makkelijker heeft gemaakt. Ik heb vooral geleerd dat ik aan de slag kan gaan,
+en dat PHPstorm mij op de momenten dat het nodig is een waarschuwing geeft en me zo begeleid bij het verbeteren en laten werken van mijn code.
+Ook heeft het werken met PHPstorm, Xamp en een lokale server me geleerd code te begrijpen, en dan vooral wat het doet en waarom dingen fout kunnen
+gaan. Hier mag ik nog vaker gebruik van maken dan dat ik doe en ik zal hier voor de toekomst dus ook nog een leerplan voor uit kunnen schrijven.
+Als het gaat om GIT kan ik vooral nog structuur aanbrengen in mijn gebruik. Vaker commiten, vaker van te voren plannen wat ik wil dat mijn code
+gaat doen als ik het commit en in kleinere stappen leren werken is iets wat mij kan helpen om grote te stappen te maken in gestructureerd
+programmeren. Dat laatste sluit ook aan op mijn doel om Formule 1 en racing in het algemeen opnieuw uit te programmeren en in kleine stapjes
+uit te zetten.

@@ -40,7 +40,7 @@ class SessionResult
     /**
      * @return int
      */
-    public function getFirstResultLineLapTime()
+    public function getFirstResultLinesLapTime()
     {
         return $this->resultLines[0]->getLapTime();
     }
@@ -49,7 +49,7 @@ class SessionResult
      * @param $position
      * @return int
      */
-    public function getPointsForSession($position)
+    public function getRaceResultPointPerGrandPrixAsDedicatedPer($position)
     {
         foreach ($this->resultLines as $position => $this->resultLines)
             if ($position == 0) {

@@ -133,13 +133,13 @@ class ResultLine
     }
 
     /**
-     * @param $lapTime
-     * @param $slowerLapTime
+     * @param $lapTimes
+     * @param $slowerLapTimes
      * @return string
      */
-    public function calculateLapTimeDifferenceBetween($lapTime, $slowerLapTime)
+    public function calculateLapTimeDifferenceBetween($lapTimes, $slowerLapTimes)
     {
-        $difference = floor(($slowerLapTime - $lapTime) * 1000);
+        $difference = floor(($slowerLapTimes - $lapTimes) * 1000);
 
         $differenceInSeconds = floor($difference / 1000);
         $differenceInMilliseconds = floor($difference % 1000);
@@ -148,12 +148,12 @@ class ResultLine
     }
 
     /**
-     * @param $lapTime
+     * @param $lapTimes
      * @return string
      */
-    public function getDifferenceBetween($lapTime)
+    public function getDifferenceBetween($lapTimes)
     {
-        $lapTimeDifferenceBetween = $this->calculateLapTimeDifferenceBetween($lapTime, $this->getLapTime());
+        $lapTimeDifferenceBetween = $this->calculateLapTimeDifferenceBetween($lapTimes, $this->getLapTime());
         return $lapTimeDifferenceBetween;
     }
 }
